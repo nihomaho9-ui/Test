@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quran yazı nümunələri — ilk 5 səhifə</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Amiri+Quran&family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink&family=Aref+Ruqaa:wght@400;700&family=Baloo+Bhaijaan+2:wght@500;700&family=Cairo:wght@400;600&family=El+Messiri:wght@500;700&family=Fustat:wght@400;700&family=Gulzar&family=Harmattan:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=Katibeh&family=Kufam:wght@500;700&family=Lateef:wght@400;700&family=Lemonada:wght@400;600&family=Mada:wght@400;600&family=Markazi+Text:wght@500;600&family=Marhey:wght@500;700&family=Mirza:wght@500;700&family=Noto+Kufi+Arabic:wght@500;700&family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=Noto+Sans+Arabic:wght@400;600&family=Playpen+Sans+Arabic:wght@500;700&family=Readex+Pro:wght@400;600&family=Reem+Kufi:wght@500;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;700&family=Zain:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #1a3330; --gold: #8a6a2e; --line: rgba(196, 165, 110, 0.7); --paper: #f6f1e4; --card: #fffaf0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 "Segoe UI", sans-serif; }
+    header { padding: 1.3rem 1rem 0.6rem; text-align: center; }
+    header h1 { margin: 0; font-size: 1.45rem; font-weight: 700; }
+    header p { margin: 0.3rem 0 0; color: #5c675f; }
+    .bar { display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; padding: 0.7rem 0.8rem 0.2rem; }
+    .bar button { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 0.42rem 0.85rem; font: 650 0.92rem inherit; cursor: pointer; }
+    .bar button.on { background: var(--ink); color: #e4c98a; border-color: var(--ink); }
+    .meta { text-align: center; color: var(--gold); font-weight: 650; margin: 0.35rem 0 0.2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 0.8rem; padding: 0.6rem 0.8rem 2rem; max-width: 1400px; margin: 0 auto; }
+    article { background: var(--card); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; display: flex; flex-direction: column; }
+    article h2 { margin: 0; padding: 0.65rem 0.8rem 0.15rem; font-size: 0.98rem; }
+    article .tag { margin: 0; padding: 0 0.8rem 0.5rem; color: var(--gold); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .q { direction: rtl; text-align: justify; padding: 0.3rem 0.9rem 0.9rem; font-size: 1.45rem; line-height: 2.15; color: #142824; }
+    .q.big { font-size: 1.7rem; line-height: 2.35; }
+    .q .surah { display: block; text-align: center; font-size: 0.72em; margin: 0.1rem 0 0.35rem; color: #12352c; letter-spacing: 0.04em; }
+    .q .basmala { display: block; text-align: center; margin: 0.1rem 0 0.45rem; }
+    .q .mark { color: var(--gold); font-size: 0.72em; padding: 0 0.12em; white-space: nowrap; }
+    footer { text-align: center; color: #6d6456; font-size: 0.82rem; padding: 0 1rem 2rem; max-width: 46rem; margin: 0 auto; }
+    footer a { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quran yazı nümunələri</h1>
+    <p>Açıq mənbə. Mədinə məshəfinin ilk 5 səhifəsi, 30 şrift.</p>
+  </header>
+  <div class="bar" id="pages"></div>
+  <p class="meta" id="meta"></p>
+  <main class="grid" id="grid"></main>
+  <footer>
+    Mətn Tanzil Uthmani nüsxəsidir və dəyişdirilməyib.
+    Səhifə bölgüsü Mədinə məshəfinin 604 səhifəlik sırasıdır.
+    Şriftlər Google Fonts üzərindən, SIL Open Font License ilə.
+    <br />Mətn: <a href="https://tanzil.net">tanzil.net</a>
+    · Lisenziya: <a href="https://tanzil.net/docs/license">tanzil.net/docs/license</a>
+    · Şriftlər: <a href="https://fonts.google.com">fonts.google.com</a>
+  </footer>
+  <script>
+    const FONTS = [
+      ["Amiri Quran", "Nəsx", "Qurana görə nəsx"],
+      ["Amiri", "Nəsx", "Klassik nəsx"],
+      ["Scheherazade New", "Nəsx", "Hərəkəli mətn"],
+      ["Noto Naskh Arabic", "Nəsx", "Noto nəsx"],
+      ["Lateef", "Nəsx", "SIL Lateef"],
+      ["Harmattan", "Nəsx", "SIL Harmattan"],
+      ["Markazi Text", "Nəsx", "Mərkəzi"],
+      ["Readex Pro", "Nəsx", "Oxu şrifti"],
+      ["El Messiri", "Nəsx", "Müasir nəsx"],
+      ["IBM Plex Sans Arabic", "Sans", "IBM Plex"],
+      ["Noto Sans Arabic", "Sans", "Noto sans"],
+      ["Cairo", "Sans", "Qahirə"],
+      ["Tajawal", "Sans", "Təcəvəl"],
+      ["Almarai", "Sans", "Əl-Mərai"],
+      ["Mada", "Sans", "Mada"],
+      ["Zain", "Sans", "Zeyn"],
+      ["Fustat", "Sans", "Fustat"],
+      ["Lemonada", "Xətt", "Yumşaq xətt"],
+      ["Playpen Sans Arabic", "Xətt", "Əl yazısı"],
+      ["Marhey", "Xətt", "Marhey"],
+      ["Baloo Bhaijaan 2", "Xətt", "Yuvarlaq"],
+      ["Katibeh", "Xətt", "Katibə"],
+      ["Noto Nastaliq Urdu", "Nəstəliq", "Nəstəliq"],
+      ["Gulzar", "Nəstəliq", "Gülzar"],
+      ["Mirza", "Nəstəliq", "Mirzə"],
+      ["Aref Ruqaa", "Ruqə", "Ruqə"],
+      ["Aref Ruqaa Ink", "Ruqə", "Mürəkkəb ruqə"],
+      ["Noto Kufi Arabic", "Kufi", "Noto kufi"],
+      ["Reem Kufi", "Kufi", "Rim kufi"],
+      ["Kufam", "Kufi", "Kufam"],
+    ];
+    const BIG = new Set(["Nəstəliq", "Ruqə", "Xətt"]);
+    const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
+    let PAGES = [];
+    let cur = 1;
+    const pagesEl = document.getElementById("pages");
+    const grid = document.getElementById("grid");
+    const meta = document.getElementById("meta");
+    function paint() {
+      const page = PAGES[cur - 1];
+      meta.textContent = "Səhifə " + page.n + " · " + page.surah + " · " + page.place + " · " + page.range + " · " + FONTS.length + " nümunə";
+      pagesEl.querySelectorAll("button").forEach((b) => b.classList.toggle("on", Number(b.dataset.n) === cur));
+      grid.replaceChildren();
+      for (const [name, kind, note] of FONTS) {
+        const card = document.createElement("article");
+        card.id = "s" + page.n + "-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const h = document.createElement("h2");
+        h.textContent = name;
+        const tag = document.createElement("p");
+        tag.className = "tag";
+        tag.textContent = kind + " · " + note;
+        const q = document.createElement("div");
+        q.className = "q" + (BIG.has(kind) ? " big" : "");
+        q.style.fontFamily = '"' + name + '", serif';
+        q.lang = "ar";
+        if (page.showTitle) {
+          const s = document.createElement("span");
+          s.className = "surah";
+          s.textContent = "سورة " + page.ar;
+          q.append(s);
+        }
+        if (page.basmala) {
+          const b = document.createElement("span");
+          b.className = "basmala";
+          b.textContent = page.basmala;
+          q.append(b);
+        }
+        page.ayahs.forEach((ay, i) => {
+          q.append(document.createTextNode((i ? " " : "") + ay.t + " "));
+          const m = document.createElement("span");
+          m.className = "mark";
+          m.textContent = "﴿" + ar(ay.a) + "﴾";
+          q.append(m);
+        });
+        card.append(h, tag, q);
+        grid.append(card);
+      }
+    }
+    fetch("./data/pages.json").then((r) => r.json()).then((pages) => {
+      PAGES = pages;
+      pages.forEach((p) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.dataset.n = p.n;
+        b.textContent = "Səhifə " + p.n;
+        b.onclick = () => { cur = p.n; paint(); };
+        pagesEl.append(b);
+      });
+      paint();
+    });
+  </script>
+</body>
+</html>

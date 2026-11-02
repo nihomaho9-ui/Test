@@ -4,33 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Aref Ruqaa · səhifə 5</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Harmattan:wght@400;700&family=Markazi+Text:wght@400;700&family=Readex+Pro:wght@400;700&family=El+Messiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Almarai:wght@400;700&family=Mada:wght@400;700&family=Zain:wght@400;700&family=Fustat:wght@400;700&family=Lemonada:wght@400;700&family=Playpen+Sans+Arabic:wght@400;700&family=Marhey:wght@400;700&family=Baloo+Bhaijaan+2:wght@400;700&family=Katibeh&family=Noto+Nastaliq+Urdu:wght@400;700&family=Gulzar&family=Mirza:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&family=Reem+Kufi:wght@400;700&family=Kufam:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=block" />
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100svh; overflow: hidden; background: #fffaf0; color: #142824; }
     #sheet {
-      position: fixed; left: 0; right: 0; top: 0; height: 100svh; overflow: hidden;
-      padding: calc(2.15rem + env(safe-area-inset-top)) 0.55rem calc(0.35rem + env(safe-area-inset-bottom));
+      position: fixed; inset: 0; height: 100svh; overflow: hidden;
+      padding: calc(2.15rem + env(safe-area-inset-top)) 0.45rem calc(0.3rem + env(safe-area-inset-bottom));
       display: flex; flex-direction: column; justify-content: space-evenly;
-      font-family: "Aref Ruqaa", "Amiri Quran", serif;
+      font-family: "Aref Ruqaa", "Noto Naskh Arabic", serif;
     }
-    .line {
-      flex: 1 1 auto; min-height: 0; width: 100%;
-      display: flex; align-items: center; justify-content: center;
-      direction: rtl; white-space: nowrap; line-height: 1;
-    }
+    .line { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; direction: rtl; white-space: nowrap; line-height: 1; }
     .line.full { justify-content: space-between; }
     .mark { color: #8a6a2e; }
-    .hud {
-      position: fixed; z-index: 2; top: 0; left: 0; right: 0; height: 2.05rem;
-      display: flex; align-items: center; gap: 0.15rem;
-      padding: env(safe-area-inset-top) 0.25rem 0;
-      background: #fffaf0; font: 650 0.78rem "Segoe UI", sans-serif; color: #8a6a2e;
-    }
+    .hud { position: fixed; z-index: 2; top: 0; left: 0; right: 0; height: calc(2.05rem + env(safe-area-inset-top)); display: flex; align-items: flex-end; gap: 0.15rem; padding: 0 0.25rem 0.15rem; background: #fffaf0; font: 650 0.78rem "Segoe UI", sans-serif; color: #8a6a2e; }
     .hud a { color: #12352c; text-decoration: none; padding: 0.1rem 0.35rem; }
     .hud a.nav { font-size: 1.3rem; line-height: 1; }
     .hud b { flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #probe { position: absolute; left: -9999px; top: 0; white-space: nowrap; visibility: hidden; font-family: "Aref Ruqaa", serif; }
+    #probe { position: absolute; left: -9999px; top: 0; white-space: nowrap; font-family: "Aref Ruqaa", "Noto Naskh Arabic", serif; }
   </style>
 </head>
 <body>
@@ -45,10 +36,11 @@
   <span id="probe"></span>
   <script>
     const PAGE = {"n": 5, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:25–29", "basmala": null, "showTitle": false, "ayahs": [{"s": 2, "a": 25, "t": "وَبَشِّرِ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ جَنَّٰتٍ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ كُلَّمَا رُزِقُوا۟ مِنْهَا مِن ثَمَرَةٍ رِّزْقًا قَالُوا۟ هَٰذَا ٱلَّذِى رُزِقْنَا مِن قَبْلُ وَأُتُوا۟ بِهِۦ مُتَشَٰبِهًا وَلَهُمْ فِيهَآ أَزْوَٰجٌ مُّطَهَّرَةٌ وَهُمْ فِيهَا خَٰلِدُونَ"}, {"s": 2, "a": 26, "t": "إِنَّ ٱللَّهَ لَا يَسْتَحْىِۦٓ أَن يَضْرِبَ مَثَلًا مَّا بَعُوضَةً فَمَا فَوْقَهَا فَأَمَّا ٱلَّذِينَ ءَامَنُوا۟ فَيَعْلَمُونَ أَنَّهُ ٱلْحَقُّ مِن رَّبِّهِمْ وَأَمَّا ٱلَّذِينَ كَفَرُوا۟ فَيَقُولُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَٰذَا مَثَلًا يُضِلُّ بِهِۦ كَثِيرًا وَيَهْدِى بِهِۦ كَثِيرًا وَمَا يُضِلُّ بِهِۦٓ إِلَّا ٱلْفَٰسِقِينَ"}, {"s": 2, "a": 27, "t": "ٱلَّذِينَ يَنقُضُونَ عَهْدَ ٱللَّهِ مِنۢ بَعْدِ مِيثَٰقِهِۦ وَيَقْطَعُونَ مَآ أَمَرَ ٱللَّهُ بِهِۦٓ أَن يُوصَلَ وَيُفْسِدُونَ فِى ٱلْأَرْضِ أُو۟لَٰٓئِكَ هُمُ ٱلْخَٰسِرُونَ"}, {"s": 2, "a": 28, "t": "كَيْفَ تَكْفُرُونَ بِٱللَّهِ وَكُنتُمْ أَمْوَٰتًا فَأَحْيَٰكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يُحْيِيكُمْ ثُمَّ إِلَيْهِ تُرْجَعُونَ"}, {"s": 2, "a": 29, "t": "هُوَ ٱلَّذِى خَلَقَ لَكُم مَّا فِى ٱلْأَرْضِ جَمِيعًا ثُمَّ ٱسْتَوَىٰٓ إِلَى ٱلسَّمَآءِ فَسَوَّىٰهُنَّ سَبْعَ سَمَٰوَٰتٍ وَهُوَ بِكُلِّ شَىْءٍ عَلِيمٌ"}]};
+    const FONT = "Aref Ruqaa";
     const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
     const sheet = document.getElementById("sheet");
     const probe = document.getElementById("probe");
-    const measure = (text, px) => { probe.style.fontSize = px + "px"; probe.textContent = text; return probe.offsetWidth; };
+    const measure = (text, px) => { probe.style.fontSize = px + "px"; probe.textContent = text; return probe.getBoundingClientRect().width; };
     function tokensOf(page) {
       const out = [];
       if (page.showTitle) out.push({ text: "سورة " + page.ar, center: true });
@@ -60,12 +52,9 @@
       return out;
     }
     function wrap(tokens, px, width) {
-      const lines = []; let cur = [], used = 0; const gap = px * 0.32;
+      const lines = []; let cur = [], used = 0; const gap = px * 0.28;
       for (const tok of tokens) {
-        if (tok.center) {
-          if (cur.length) lines.push(cur);
-          lines.push([tok.text]); cur = []; used = 0; continue;
-        }
+        if (tok.center) { if (cur.length) lines.push(cur); lines.push([tok.text]); cur = []; used = 0; continue; }
         const w = measure(tok.text, px);
         if (w > width) return null;
         const next = used + (cur.length ? gap : 0) + w;
@@ -75,26 +64,12 @@
       if (cur.length) lines.push(cur);
       return lines;
     }
-    function show() {
-      const tokens = tokensOf(PAGE);
-      const width = Math.max(40, sheet.clientWidth - 2);
-      const height = Math.max(40, sheet.clientHeight);
-      let lo = 8, hi = Math.min(width / 6, height / 5), best = null;
-      for (let i = 0; i < 18; i++) {
-        const mid = (lo + hi) / 2;
-        const lines = wrap(tokens, mid, width);
-        if (lines && lines.length * mid * 1.85 <= height) { best = { px: mid, lines }; lo = mid; }
-        else hi = mid;
-      }
-      if (!best) {
-        const lines = wrap(tokens, lo, width) || [tokens.map((t) => t.text)];
-        best = { px: lo, lines };
-      }
+    function paint(px, lines) {
       sheet.replaceChildren();
-      for (const words of best.lines) {
+      for (const words of lines) {
         const el = document.createElement("div");
         el.className = "line" + (words.length > 1 ? " full" : "");
-        el.style.fontSize = best.px + "px";
+        el.style.fontSize = px + "px";
         for (const w of words) {
           const s = document.createElement("span");
           const m = w.match(/^(.*?)( ﴿.+﴾)$/);
@@ -105,11 +80,34 @@
         sheet.append(el);
       }
     }
-    const go = () => requestAnimationFrame(show);
-    document.fonts.ready.then(go);
-    document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", go);
-    window.addEventListener("resize", go);
-    setTimeout(go, 250);
+    function tooWide() {
+      return [...sheet.querySelectorAll(".line")].some((l) => l.scrollWidth > l.clientWidth + 1);
+    }
+    function show() {
+      const tokens = tokensOf(PAGE);
+      const width = Math.max(40, sheet.clientWidth - 6);
+      const height = Math.max(40, sheet.clientHeight);
+      let px = Math.min(width / 8, height / 8);
+      let lines = null;
+      for (let n = 0; n < 28 && px > 8; n++) {
+        lines = wrap(tokens, px, width);
+        if (lines && lines.length * px * 1.9 <= height) break;
+        px *= 0.92;
+        lines = null;
+      }
+      if (!lines) lines = wrap(tokens, 11, width * 2) || [tokens.map((t) => t.text)];
+      paint(Math.max(px, 8), lines);
+      let guard = 0;
+      while (tooWide() && px > 8 && guard < 16) { px *= 0.9; const again = wrap(tokens, px, width); if (!again) break; lines = again; paint(px, lines); guard++; }
+    }
+    async function start() {
+      try { await document.fonts.load('48px "' + FONT + '"'); await document.fonts.load('16px "' + FONT + '"'); } catch (e) {}
+      await document.fonts.ready;
+      show();
+    }
+    start();
+    document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", () => start());
+    window.addEventListener("resize", show);
   </script>
 </body>
 </html>

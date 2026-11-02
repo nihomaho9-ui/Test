@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>El Messiri · səhifə 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Harmattan:wght@400;700&family=Markazi+Text:wght@400;700&family=Readex+Pro:wght@400;700&family=El+Messiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Almarai:wght@400;700&family=Mada:wght@400;700&family=Zain:wght@400;700&family=Fustat:wght@400;700&family=Lemonada:wght@400;700&family=Playpen+Sans+Arabic:wght@400;700&family=Marhey:wght@400;700&family=Baloo+Bhaijaan+2:wght@400;700&family=Katibeh&family=Noto+Nastaliq+Urdu:wght@400;700&family=Gulzar&family=Mirza:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&family=Reem+Kufi:wght@400;700&family=Kufam:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #fffaf0; color: #142824; }
+    #sheet {
+      position: fixed; inset: 0;
+      padding: calc(2.3rem + env(safe-area-inset-top)) 0.7rem calc(0.4rem + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; justify-content: space-evenly;
+      font-family: "El Messiri", serif;
+    }
+    .line { flex: 1 1 0; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; direction: rtl; white-space: nowrap; overflow: hidden; }
+    .line.full { justify-content: space-between; }
+    .line .mark { color: #8a6a2e; }
+    .hud { position: fixed; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 0.2rem; padding: calc(0.1rem + env(safe-area-inset-top)) 0.3rem 0.6rem; background: linear-gradient(#fffaf0 55%, rgba(255,250,240,0)); font: 650 0.78rem "Segoe UI", sans-serif; color: #8a6a2e; }
+    .hud a { color: #12352c; text-decoration: none; padding: 0.15rem 0.35rem; }
+    .hud a.nav { font-size: 1.25rem; line-height: 1; }
+    .hud b { flex: 1; text-align: center; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #probe { position: absolute; visibility: hidden; white-space: nowrap; pointer-events: none; font-family: "El Messiri", serif; }
+  </style>
+</head>
+<body>
+  <nav class="hud">
+    <a href="../index.html?p=2">Siyahı</a>
+    <a class="nav" href="./s2-readex-pro.html" aria-label="Əvvəlki">‹</a>
+    <b>El Messiri</b>
+    <a class="nav" href="./s2-ibm-plex-sans-arabic.html" aria-label="Növbəti">›</a>
+    <span>2 / 5</span>
+  </nav>
+  <main id="sheet"></main>
+  <span id="probe"></span>
+  <script>
+    const PAGE = {"n": 2, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:1–5", "basmala": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", "showTitle": true, "ayahs": [{"s": 2, "a": 1, "t": "الٓمٓ"}, {"s": 2, "a": 2, "t": "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ"}, {"s": 2, "a": 3, "t": "ٱلَّذِينَ يُؤْمِنُونَ بِٱلْغَيْبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقْنَٰهُمْ يُنفِقُونَ"}, {"s": 2, "a": 4, "t": "وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْـَٔاخِرَةِ هُمْ يُوقِنُونَ"}, {"s": 2, "a": 5, "t": "أُو۟لَٰٓئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ"}]};
+    const FONT = "El Messiri";
+    const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
+    const sheet = document.getElementById("sheet");
+    const probe = document.getElementById("probe");
+    function measure(text, px) {
+      probe.style.font = px + "px " + probe.style.fontFamily;
+      probe.textContent = text;
+      return probe.offsetWidth;
+    }
+    function tokensOf(page) {
+      const out = [];
+      if (page.showTitle) out.push({ text: "سورة " + page.ar, center: true });
+      if (page.basmala) out.push({ text: page.basmala, center: true });
+      for (const ay of page.ayahs) {
+        const words = ay.t.split(/\s+/).filter(Boolean);
+        words.forEach((w, i) => out.push({ text: w + (i === words.length - 1 ? " ﴿" + ar(ay.a) + "﴾" : ""), center: false }));
+      }
+      return out;
+    }
+    function wrap(tokens, px, width) {
+      const lines = [];
+      let cur = [], used = 0;
+      const gap = px * 0.35;
+      for (const tok of tokens) {
+        if (tok.center) {
+          if (cur.length) { lines.push({ words: cur, center: false }); cur = []; used = 0; }
+          lines.push({ words: [tok.text], center: true });
+          continue;
+        }
+        const w = measure(tok.text, px);
+        if (w > width) return null;
+        const next = used + (cur.length ? gap : 0) + w;
+        if (cur.length && next > width) { lines.push({ words: cur, center: false }); cur = [tok.text]; used = w; }
+        else { cur.push(tok.text); used = next; }
+      }
+      if (cur.length) lines.push({ words: cur, center: false });
+      return lines;
+    }
+    function show() {
+      const tokens = tokensOf(PAGE);
+      const width = sheet.clientWidth - 4;
+      const height = sheet.clientHeight;
+      let lo = 8, hi = Math.min(width / 4, height / 4), best = null;
+      for (let i = 0; i < 16; i++) {
+        const mid = (lo + hi) / 2;
+        const lines = wrap(tokens, mid, width);
+        if (lines && lines.length * mid * 1.15 <= height) { best = { px: mid, lines }; lo = mid; }
+        else hi = mid;
+      }
+      if (!best) best = { px: 12, lines: wrap(tokens, 12, width) || [{ words: ["…"], center: true }] };
+      sheet.replaceChildren();
+      for (const line of best.lines) {
+        const el = document.createElement("div");
+        el.className = "line" + (!line.center && line.words.length > 1 ? " full" : "");
+        el.style.fontSize = best.px + "px";
+        line.words.forEach((w) => {
+          const s = document.createElement("span");
+          const m = w.match(/^(.*?)( ﴿.+﴾)$/);
+          if (m) { s.append(m[1]); const k = document.createElement("span"); k.className = "mark"; k.textContent = m[2]; s.append(k); }
+          else s.textContent = w;
+          el.append(s);
+        });
+        sheet.append(el);
+      }
+    }
+    document.fonts.ready.then(() => { show(); setTimeout(show, 300); });
+    window.addEventListener("resize", show);
+  </script>
+</body>
+</html>

@@ -16,4 +16,4 @@ Bu, rəsmi xətt nümunəsi deyil. Hər kart eyni ayələri başqa açıq şrift
 
 ## Açmaq
 
-Hər nümunə ayrı səhifədə açılır (`view.html`). Bir Quran səhifəsinin bütün mətni ekrana sığır, kənara çıxmır.
+Hər nümunənin öz HTML səhifəsi var: `n/s1-amiri-quran.html` və qalan 149 fayl. Siyahıdan birinə basanda həmin səhifə açılır və ekranı tam tutur.

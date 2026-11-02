@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Quran səhifəsi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Amiri+Quran&family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink&family=Aref+Ruqaa:wght@400;700&family=Baloo+Bhaijaan+2:wght@500;700&family=Cairo:wght@400;600&family=El+Messiri:wght@500;700&family=Fustat:wght@400;700&family=Gulzar&family=Harmattan:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=Katibeh&family=Kufam:wght@500;700&family=Lateef:wght@400;700&family=Lemonada:wght@400;600&family=Mada:wght@400;600&family=Markazi+Text:wght@500;600&family=Marhey:wght@500;700&family=Mirza:wght@500;700&family=Noto+Kufi+Arabic:wght@500;700&family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=Noto+Sans+Arabic:wght@400;600&family=Playpen+Sans+Arabic:wght@500;700&family=Readex+Pro:wght@400;600&family=Reem+Kufi:wght@500;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;700&family=Zain:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #1a3330; color: #12352c; font-family: "Segoe UI", sans-serif; }
+    body { display: flex; flex-direction: column; height: 100dvh; }
+    .top {
+      flex: 0 0 auto; display: flex; align-items: center; gap: 0.35rem;
+      min-height: 2.7rem; padding: calc(0.15rem + env(safe-area-inset-top)) 0.35rem 0.15rem;
+      background: #12352c; color: #e4c98a;
+    }
+    .top a, .top button {
+      height: 2.2rem; display: grid; place-items: center;
+      color: #e4c98a; text-decoration: none; font-size: 1.45rem; line-height: 1;
+      background: none; border: 0; cursor: pointer; padding: 0 0.2rem;
+    }
+    .top a { width: auto; font-size: 0.82rem; font-weight: 650; }
+    .top button { width: 2.2rem; }
+    .top b { flex: 1; text-align: center; font-size: 0.92rem; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .top span { width: 4.6rem; text-align: end; font-size: 0.78rem; padding-inline-end: 0.35rem; }
+    #sheet {
+      flex: 1; min-height: 0; margin: 0.35rem; padding: 0.45rem 0.55rem calc(0.45rem + env(safe-area-inset-bottom));
+      background: #fffaf0; border-radius: 0.45rem; overflow: hidden;
+      display: flex; align-items: stretch;
+    }
+    #q {
+      width: 100%; direction: rtl; text-align: justify; margin: 0;
+      line-height: 1.85; color: #142824;
+    }
+    #q.tall { line-height: 2.15; }
+    #q .surah, #q .basmala { display: block; text-align: center; }
+    #q .surah { margin-bottom: 0.15em; }
+    #q .basmala { margin-bottom: 0.25em; }
+    #q .mark { color: #8a6a2e; font-size: 0.72em; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <a id="back" href="./index.html">Siyahı</a>
+    <button type="button" id="prev" aria-label="Əvvəlki">‹</button>
+    <b id="title"></b>
+    <button type="button" id="next" aria-label="Növbəti">›</button>
+    <span id="pg"></span>
+  </div>
+  <main id="sheet"><div id="q"></div></main>
+  <script>
+    const FONTS = ["Amiri Quran","Amiri","Scheherazade New","Noto Naskh Arabic","Lateef","Harmattan","Markazi Text","Readex Pro","El Messiri","IBM Plex Sans Arabic","Noto Sans Arabic","Cairo","Tajawal","Almarai","Mada","Zain","Fustat","Lemonada","Playpen Sans Arabic","Marhey","Baloo Bhaijaan 2","Katibeh","Noto Nastaliq Urdu","Gulzar","Mirza","Aref Ruqaa","Aref Ruqaa Ink","Noto Kufi Arabic","Reem Kufi","Kufam"];
+    const TALL = new Set(["Noto Nastaliq Urdu","Gulzar","Mirza","Aref Ruqaa","Aref Ruqaa Ink","Katibeh","Lemonada","Marhey","Baloo Bhaijaan 2","Playpen Sans Arabic"]);
+    const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
+    const q = new URLSearchParams(location.search);
+    let pageNo = Math.min(5, Math.max(1, Number(q.get("p")) || 1));
+    let font = q.get("f") || FONTS[0];
+    if (!FONTS.includes(font)) font = FONTS[0];
+    const title = document.getElementById("title");
+    const pg = document.getElementById("pg");
+    const box = document.getElementById("q");
+    const sheet = document.getElementById("sheet");
+    let PAGES = [];
+    function href(p, f) { return "./view.html?p=" + p + "&f=" + encodeURIComponent(f); }
+    function fit() {
+      const avail = sheet.clientHeight - 2;
+      let lo = 8, hi = Math.max(18, Math.min(sheet.clientWidth / 7, 80)), best = lo;
+      for (let i = 0; i < 16; i++) {
+        const mid = (lo + hi) / 2;
+        box.style.fontSize = mid + "px";
+        if (box.scrollHeight <= avail) { best = mid; lo = mid; }
+        else hi = mid;
+      }
+      box.style.fontSize = best + "px";
+    }
+    function show() {
+      const page = PAGES[pageNo - 1];
+      title.textContent = font;
+      pg.textContent = pageNo + " / 5";
+      document.title = font + " · səhifə " + pageNo;
+      history.replaceState(null, "", href(pageNo, font));
+      document.getElementById("back").href = "./index.html?p=" + pageNo;
+      box.className = TALL.has(font) ? "tall" : "";
+      box.style.fontFamily = '"' + font + '", serif';
+      box.replaceChildren();
+      if (page.showTitle) {
+        const s = document.createElement("span");
+        s.className = "surah";
+        s.textContent = "سورة " + page.ar;
+        box.append(s);
+      }
+      if (page.basmala) {
+        const b = document.createElement("span");
+        b.className = "basmala";
+        b.textContent = page.basmala;
+        box.append(b);
+      }
+      page.ayahs.forEach((ay, i) => {
+        box.append(document.createTextNode((i ? " " : "") + ay.t + " "));
+        const m = document.createElement("span");
+        m.className = "mark";
+        m.textContent = "﴿" + ar(ay.a) + "﴾";
+        box.append(m);
+      });
+      requestAnimationFrame(fit);
+    }
+    function step(dir) {
+      let i = FONTS.indexOf(font) + dir;
+      if (i < 0) { i = FONTS.length - 1; pageNo = pageNo <= 1 ? 5 : pageNo - 1; }
+      if (i >= FONTS.length) { i = 0; pageNo = pageNo >= 5 ? 1 : pageNo + 1; }
+      font = FONTS[i];
+      show();
+    }
+    document.getElementById("prev").onclick = () => step(-1);
+    document.getElementById("next").onclick = () => step(1);
+    window.addEventListener("resize", fit);
+    fetch("./data/pages.json").then((r) => r.json()).then(async (pages) => {
+      PAGES = pages;
+      await document.fonts.ready;
+      show();
+      setTimeout(fit, 300);
+    });
+  </script>
+</body>
+</html>

@@ -16,4 +16,4 @@ Bu, rəsmi xətt nümunəsi deyil. Hər kart eyni ayələri başqa açıq şrift
 
 ## Açmaq
 
-`index.html` faylını brauzerdə açın, ya da GitHub Pages ünvanına girin. Şəkillər `samples/` qovluğundadır.
+Hər nümunə ayrı səhifədə açılır (`view.html`). Bir Quran səhifəsinin bütün mətni ekrana sığır, kənara çıxmır.

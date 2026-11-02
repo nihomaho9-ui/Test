@@ -12,55 +12,117 @@
     .hud a { color: #12352c; text-decoration: none; padding: 8px; }
     .hud a.nav { font-size: 22px; line-height: 1; }
     .hud b { flex: 1; text-align: center; font-size: 13px; white-space: nowrap; overflow: hidden; }
-    #frame { position: fixed; top: 40px; left: 0; right: 0; bottom: 0; overflow: hidden; }
-    #q { margin: 0 auto; padding: 4px 14px 10px; direction: rtl; text-align: center; font-family: "Lemonada", "Noto Naskh Arabic", serif; line-height: 2.45; overflow-wrap: anywhere; }
-    #q .surah, #q .basmala { display: block; text-align: center; }
-    #q .mark { color: #8a6a2e; white-space: nowrap; }
+    #frame { position: fixed; top: 40px; right: 10px; left: 10px; bottom: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-evenly; }
+    .line { display: flex; align-items: center; direction: rtl; width: 100%; white-space: nowrap; font-family: "Lemonada", "Noto Naskh Arabic", serif; }
+    .line.full { justify-content: space-between; }
+    .line.mid { justify-content: center; }
+    .mark { color: #8a6a2e; }
+    #probe { position: absolute; left: -9999px; top: 0; white-space: nowrap; font-family: "Lemonada", "Noto Naskh Arabic", serif; }
   </style>
 </head>
 <body>
   <nav class="hud">
     <a href="../index.html?p=2">Siyahı</a>
-    <a class="nav" href="./s2-fustat.html">‹</a>
+    <a class="nav" href="./s2-fustat.html?v=3">‹</a>
     <b>Lemonada</b>
-    <a class="nav" href="./s2-playpen-sans-arabic.html">›</a>
+    <a class="nav" href="./s2-playpen-sans-arabic.html?v=3">›</a>
     <span style="padding-right:8px">2/5</span>
   </nav>
-  <div id="frame"><div id="q"></div></div>
+  <div id="frame"></div>
+  <span id="probe"></span>
   <script>
     const PAGE = {"n": 2, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:1–5", "basmala": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", "showTitle": true, "ayahs": [{"s": 2, "a": 1, "t": "الٓمٓ"}, {"s": 2, "a": 2, "t": "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ"}, {"s": 2, "a": 3, "t": "ٱلَّذِينَ يُؤْمِنُونَ بِٱلْغَيْبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقْنَٰهُمْ يُنفِقُونَ"}, {"s": 2, "a": 4, "t": "وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْـَٔاخِرَةِ هُمْ يُوقِنُونَ"}, {"s": 2, "a": 5, "t": "أُو۟لَٰٓئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ"}]};
     const FONT = "Lemonada";
-    const LH = 2.45;
+    const LH = 2.35;
     const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
-    const q = document.getElementById("q");
-    function build() {
-      q.replaceChildren();
-      q.style.fontFamily = '"' + FONT + '", "Noto Naskh Arabic", serif';
-      if (PAGE.showTitle) { const s = document.createElement("span"); s.className = "surah"; s.textContent = "سورة " + PAGE.ar; q.append(s); }
-      if (PAGE.basmala) { const b = document.createElement("span"); b.className = "basmala"; b.textContent = PAGE.basmala; q.append(b); }
-      PAGE.ayahs.forEach((ay, i) => {
-        q.append(document.createTextNode((i || PAGE.showTitle || PAGE.basmala ? " " : "") + ay.t + " "));
-        const m = document.createElement("span"); m.className = "mark"; m.textContent = "﴿" + ar(ay.a) + "﴾"; q.append(m);
-      });
+    const frame = document.getElementById("frame");
+    const probe = document.getElementById("probe");
+    const measure = (text, px) => { probe.style.fontSize = px + "px"; probe.textContent = text; return probe.getBoundingClientRect().width; };
+    function pieces() {
+      const head = [];
+      if (PAGE.showTitle) head.push("سورة " + PAGE.ar);
+      if (PAGE.basmala) head.push(PAGE.basmala);
+      const words = [];
+      for (const ay of PAGE.ayahs) {
+        const ws = ay.t.split(/\s+/).filter(Boolean);
+        ws.forEach((w, i) => words.push(i === ws.length - 1 ? w + "\u00a0﴿" + ar(ay.a) + "﴾" : w));
+      }
+      return { head, words };
+    }
+    function wrap(words, px, width) {
+      const lines = []; let cur = [], used = 0; const gap = px * 0.45;
+      for (const w of words) {
+        const ww = measure(w, px);
+        if (ww > width) return null;
+        const next = used + (cur.length ? gap : 0) + ww;
+        if (cur.length && next > width) { lines.push(cur); cur = [w]; used = ww; }
+        else { cur.push(w); used = next; }
+      }
+      if (cur.length) lines.push(cur);
+      return lines;
+    }
+    function widthOf(line, px) {
+      const gap = px * 0.45;
+      return line.reduce((s, w) => s + measure(w, px), 0) + gap * Math.max(0, line.length - 1);
+    }
+    function rebalance(lines, px, width) {
+      for (let n = 0; n < 12 && lines.length > 1; n++) {
+        const last = lines[lines.length - 1];
+        const prev = lines[lines.length - 2];
+        if (prev.length < 2) break;
+        if (widthOf(last, px) >= width * 0.72) break;
+        const moved = prev[prev.length - 1];
+        if (widthOf(last.concat(moved), px) > width) break;
+        last.unshift(prev.pop());
+      }
+      return lines;
+    }
+    function paint(px, head, lines) {
+      frame.replaceChildren();
+      frame.style.fontSize = px + "px";
+      const add = (text, cls) => {
+        const el = document.createElement("div");
+        el.className = "line " + cls;
+        el.style.fontSize = px + "px";
+        el.style.lineHeight = String(LH);
+        if (cls === "full") {
+          text.forEach((w) => {
+            const s = document.createElement("span");
+            const m = w.split("\u00a0");
+            s.append(document.createTextNode(m[0]));
+            if (m[1]) { const k = document.createElement("span"); k.className = "mark"; k.textContent = "\u00a0" + m[1]; s.append(k); }
+            el.append(s);
+          });
+        } else el.textContent = text;
+        frame.append(el);
+      };
+      head.forEach((t) => add(t, "mid"));
+      lines.forEach((line) => add(line, line.length > 1 ? "full" : "mid"));
     }
     function fit() {
-      const height = Math.max(200, window.innerHeight - 48);
-      const width = Math.max(200, window.innerWidth - 8);
-      const chars = Math.max(40, q.textContent.replace(/\s/g, "").length);
-      q.style.width = (width - 20) + "px";
-      q.style.transform = "none";
-      let font = Math.sqrt((height * (width - 28)) / (chars * 0.52 * LH));
-      font = Math.max(14, Math.min(font, (width - 28) / 12, 34));
-      q.style.fontSize = font + "px";
+      const { head, words } = pieces();
+      const height = Math.max(180, frame.clientHeight || window.innerHeight - 48);
+      const width = Math.max(160, frame.clientWidth || window.innerWidth - 20);
+      let lo = 13, hi = Math.min(40, width / 9), best = null;
+      for (let i = 0; i < 14; i++) {
+        const mid = (lo + hi) / 2;
+        const lines = wrap(words, mid, width - 4);
+        const count = (lines ? lines.length : 99) + head.length;
+        if (lines && count * mid * LH <= height) { best = { px: mid, lines }; lo = mid; }
+        else hi = mid;
+      }
+      if (!best) best = { px: 14, lines: wrap(words, 14, width - 4) || [words] };
+      best.lines = rebalance(best.lines, best.px, width - 4);
+      paint(best.px, head, best.lines);
       let guard = 0;
-      while ((q.scrollHeight > height - 6 || q.scrollWidth > width - 4) && font > 13 && guard < 24) {
-        font *= 0.92;
-        q.style.fontSize = font + "px";
+      while (frame.scrollHeight > height + 2 && best.px > 12 && guard < 10) {
+        best.px *= 0.94;
+        const lines = wrap(words, best.px, width - 4) || best.lines;
+        paint(best.px, head, rebalance(lines, best.px, width - 4));
         guard++;
       }
     }
     async function start() {
-      build();
       try { await document.fonts.load('32px "' + FONT + '"'); } catch (e) {}
       await document.fonts.ready;
       fit();

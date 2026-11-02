@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Səhifə 4</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #fffaf0; color: #1a1612; font-family: "Segoe UI", sans-serif; }
+  body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
+  header { display: flex; align-items: center; gap: 8px; padding: 6px 10px 0; color: #6a5e4c; font-size: 13px; }
+  header a { color: #8a7d68; text-decoration: none; font-size: 20px; padding: 4px; }
+  header b { flex: 1; text-align: center; font-weight: 500; font-size: 13px; }
+  #page {
+    --rows: 15;
+    flex: 1; min-height: 0; margin: 0;
+    background: #fffaf0;
+    display: flex; flex-direction: column;
+    overflow: hidden; color: #1a1612;
+  }
+  #page.mid { justify-content: center; position: relative; }
+  #page.mid .line { flex: 0 0 calc(100% / var(--rows)); }
+  #page.mid .line.surah {
+    position: absolute; left: 0; right: 0; height: calc(100% / var(--rows)); flex: none;
+    top: calc(50% - var(--half, 3.5) * 100% / var(--rows) - 155% / var(--rows));
+  }
+  .line { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; line-height: 1; white-space: nowrap; direction: rtl; }
+  .shead { position: relative; width: 96%; height: 88%; display: flex; align-items: center; justify-content: center; }
+  .shead img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .snames { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.28em; direction: rtl; }
+  .sname { font-family: surahnames, serif; line-height: 1; color: #1a1612; }
+  .basmala { font-family: QCF1, serif; line-height: 1; direction: rtl; color: #1a1612; }
+  .num { text-align: center; color: #8a7d68; font-size: 12px; padding: 2px 0 8px; }
+  @media (orientation: portrait) and (max-width: 520px) {
+    #page:not(.mid) { justify-content: center; }
+    #page:not(.mid) .line { flex: 0 1 calc(100% / 16.7); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="../index.html">‹</a>
+  <a href="./3.html">‹</a>
+  <b id="title"></b>
+  <a href="./5.html">›</a>
+</header>
+<div id="page"></div>
+<div class="num" id="pos"></div>
+<script>
+const N = 4;
+const LINES = ["ﱁﱂﱃﱄﱅﱆﱇﱈﱉ", "ﱊﱋﱌﱍﱎﱏﱐﱑﱒﱓ", "ﱔﱕﱖﱗﱘﱙﱚﱛﱜﱝﱞ", "ﱟﱠﱡﱢﱣﱤﱥﱦ", "ﱧﱨﱩﱪﱫﱬﱭﱮﱯﱰ", "ﱱﱲﱳﱴﱵﱶﱷﱸﱹﱺﱻ", "ﱼﱽﱾﱿﲀﲁﲂﲃﲄﲅﲆﲇ", "ﲈﲉﲊﲋﲌﲍﲎﲏﲐ", "ﲑﲒﲓﲔﲕﲖﲗﲘﲙﲚ", "ﲛﲜﲝﲞﲟﲠﲡﲢﲣ", "ﲤﲥﲦﲧﲨﲩﲪﲫﲬﲭﲮ", "ﲯﲰﲱﲲﲳﲴﲵﲶﲷﲸﲹ", "ﲺﲻﲼﲽﲾﲿﳀﳁﳂ", "ﳃﳄﳅﳆﳇﳈﳉﳊﳋﳌ", "ﳍﳎﳏﳐﳑﳒﳓﳔ"];
+const HEADS = { 1: { 0: 1 }, 2: { 0: 2 } };
+const BIS = { 2: { 1: true } };
+const TITLES = { 1: "əl-Fatihə", 2: "əl-Bəqərə", 3: "əl-Bəqərə", 4: "əl-Bəqərə", 5: "əl-Bəqərə" };
+const BISM = "\uFC41\uFC42\uFC43\uFC44";
+const board = document.getElementById("page");
+document.getElementById("title").textContent = TITLES[N];
+document.getElementById("pos").textContent = String(N);
+function fit() {
+  const h = board.clientHeight;
+  const w = board.clientWidth - 16;
+  let size = h / 15;
+  for (let i = 0; i < 4; i++) {
+    board.style.fontSize = size + "px";
+    let widest = 0;
+    for (const line of board.querySelectorAll(".line:not(.surah)")) widest = Math.max(widest, line.scrollWidth);
+    if (widest <= w || widest === 0) break;
+    size *= (w / widest) * 0.94;
+  }
+  board.style.fontSize = size + "px";
+  let ink = 0;
+  for (const line of board.querySelectorAll(".line:not(.surah)")) ink = Math.max(ink, line.scrollWidth);
+  const card = Math.min(Math.max(ink, 0), board.clientWidth * 0.92);
+  for (const head of board.querySelectorAll(".shead")) if (card > 0) head.style.width = card + "px";
+  for (const row of board.querySelectorAll(".snames")) {
+    const head = row.parentElement;
+    const maxW = head.clientWidth * 0.62;
+    let sizeName = head.clientHeight * 0.46;
+    row.style.fontSize = sizeName + "px";
+    if (row.scrollWidth > maxW && row.scrollWidth > 0) row.style.fontSize = sizeName * (maxW / row.scrollWidth) + "px";
+  }
+}
+function draw() {
+  const marks = { ...(HEADS[N] || {}) };
+  const bis = { ...(BIS[N] || {}) };
+  board.classList.toggle("mid", N === 1 || N === 2);
+  board.style.fontFamily = "QCF" + N + ", serif";
+  board.replaceChildren();
+  let last = LINES.length - 1;
+  if (N === 1 || N === 2) while (last > 0 && !LINES[last] && !marks[last] && !bis[last]) last--;
+  const nText = LINES.slice(0, last + 1).filter((t, i) => t || marks[i] || bis[i]).length;
+  if (N === 1 || N === 2) board.style.setProperty("--half", String((nText - 1) / 2));
+  LINES.forEach((text, i) => {
+    if (i > last) return;
+    if ((N === 1 || N === 2) && !text && !marks[i] && !bis[i]) return;
+    const row = document.createElement("div");
+    if (marks[i]) {
+      row.className = "line surah";
+      const head = document.createElement("div");
+      head.className = "shead";
+      const frame = document.createElement("img");
+      frame.src = "../fonts/surah-banner.png";
+      frame.alt = "";
+      const names = document.createElement("span");
+      names.className = "snames";
+      const word = document.createElement("span");
+      word.className = "sname";
+      word.textContent = "\uE000";
+      const name = document.createElement("span");
+      name.className = "sname";
+      name.textContent = String.fromCharCode(0xe000 + marks[i]);
+      names.append(word, name);
+      head.append(frame, names);
+      row.append(head);
+    } else if (bis[i]) {
+      row.className = "line basmala";
+      const b = document.createElement("span");
+      b.className = "basmala";
+      b.textContent = BISM;
+      row.append(b);
+    } else {
+      row.className = "line";
+      row.textContent = text;
+    }
+    board.append(row);
+  });
+  fit();
+}
+Promise.all([
+  new FontFace("QCF" + N, "url(../fonts/p" + N + ".woff2)").load(),
+  new FontFace("QCF1", "url(../fonts/p1.woff2)").load(),
+  new FontFace("surahnames", "url(../fonts/sura_names.woff2)").load(),
+]).then((faces) => {
+  faces.forEach((f) => document.fonts.add(f));
+  draw();
+  setTimeout(fit, 80);
+}).catch(() => draw());
+window.addEventListener("resize", fit);
+</script>
+</body>
+</html>

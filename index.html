@@ -1,94 +1,28 @@
 <!doctype html>
 <html lang="az">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quran yazı nümunələri — ilk 5 səhifə</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Amiri+Quran&family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink&family=Aref+Ruqaa:wght@400;700&family=Baloo+Bhaijaan+2:wght@500;700&family=Cairo:wght@400;600&family=El+Messiri:wght@500;700&family=Fustat:wght@400;700&family=Gulzar&family=Harmattan:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=Katibeh&family=Kufam:wght@500;700&family=Lateef:wght@400;700&family=Lemonada:wght@400;600&family=Mada:wght@400;600&family=Markazi+Text:wght@500;600&family=Marhey:wght@500;700&family=Mirza:wght@500;700&family=Noto+Kufi+Arabic:wght@500;700&family=Noto+Naskh+Arabic:wght@500;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=Noto+Sans+Arabic:wght@400;600&family=Playpen+Sans+Arabic:wght@500;700&family=Readex+Pro:wght@400;600&family=Reem+Kufi:wght@500;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;700&family=Zain:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    :root { --ink: #1a3330; --gold: #8a6a2e; --line: rgba(196, 165, 110, 0.7); --paper: #f6f1e4; --card: #fffaf0; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 "Segoe UI", sans-serif; }
-    header { padding: 1.2rem 1rem 0.4rem; text-align: center; }
-    header h1 { margin: 0; font-size: 1.4rem; }
-    header p { margin: 0.25rem 0 0; color: #5c675f; }
-    .bar { display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; padding: 0.7rem 0.8rem 0; }
-    .bar button { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 0.4rem 0.8rem; font: 650 0.9rem inherit; cursor: pointer; }
-    .bar button.on { background: var(--ink); color: #e4c98a; border-color: var(--ink); }
-    .meta { text-align: center; color: var(--gold); font-weight: 650; margin: 0.4rem 0 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.65rem; padding: 0.7rem 0.8rem 2rem; max-width: 1100px; margin: 0 auto; }
-    a.card { display: block; text-decoration: none; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 0.9rem; padding: 0.7rem 0.8rem 0.75rem; }
-    a.card b { display: block; font-size: 0.98rem; }
-    a.card small { color: var(--gold); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem; }
-    a.card .peek { direction: rtl; margin-top: 0.35rem; font-size: 1.25rem; line-height: 1.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #142824; }
-    footer { text-align: center; color: #6d6456; font-size: 0.8rem; padding: 0 1rem 2rem; }
-    footer a { color: var(--gold); }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Quran — ilk 5 səhifə</title>
+<style>
+  body { margin: 0; background: #fffaf0; color: #1a1612; font: 16px/1.4 "Segoe UI", sans-serif; }
+  h1 { text-align: center; font-size: 1.3rem; margin: 1.2rem 0 0.3rem; }
+  p { text-align: center; color: #6a5e4c; margin: 0 1rem 1rem; }
+  .grid { display: grid; gap: 0.7rem; padding: 0.4rem 1rem 2rem; max-width: 420px; margin: 0 auto; }
+  a { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e4d3ae; border-radius: 14px; padding: 0.9rem 1rem; }
+  a b { display: block; }
+  a span { color: #8a6a2e; font-size: 0.85rem; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Quran yazı nümunələri</h1>
-    <p>Hər nümunənin öz səhifəsi var. Açılan səhifə ekranı tam tutur.</p>
-  </header>
-  <div class="bar" id="pages"></div>
-  <p class="meta" id="meta"></p>
-  <main class="grid" id="grid"></main>
-  <footer>
-    Mətn: <a href="https://tanzil.net">Tanzil Uthmani</a> ·
-    Şriftlər: <a href="https://fonts.google.com">Google Fonts, SIL OFL</a>
-  </footer>
-  <script>
-    const FONTS = [
-      ["Amiri Quran", "Nəsx"], ["Amiri", "Nəsx"], ["Scheherazade New", "Nəsx"], ["Noto Naskh Arabic", "Nəsx"],
-      ["Lateef", "Nəsx"], ["Harmattan", "Nəsx"], ["Markazi Text", "Nəsx"], ["Readex Pro", "Nəsx"], ["El Messiri", "Nəsx"],
-      ["IBM Plex Sans Arabic", "Sans"], ["Noto Sans Arabic", "Sans"], ["Cairo", "Sans"], ["Tajawal", "Sans"],
-      ["Almarai", "Sans"], ["Mada", "Sans"], ["Zain", "Sans"], ["Fustat", "Sans"],
-      ["Lemonada", "Xətt"], ["Playpen Sans Arabic", "Xətt"], ["Marhey", "Xətt"], ["Baloo Bhaijaan 2", "Xətt"], ["Katibeh", "Xətt"],
-      ["Noto Nastaliq Urdu", "Nəstəliq"], ["Gulzar", "Nəstəliq"], ["Mirza", "Nəstəliq"],
-      ["Aref Ruqaa", "Ruqə"], ["Aref Ruqaa Ink", "Ruqə"],
-      ["Noto Kufi Arabic", "Kufi"], ["Reem Kufi", "Kufi"], ["Kufam", "Kufi"],
-    ];
-    let PAGES = [], cur = Number(new URLSearchParams(location.search).get("p")) || 1;
-    const pagesEl = document.getElementById("pages");
-    const grid = document.getElementById("grid");
-    function paint() {
-      const page = PAGES[cur - 1];
-      document.getElementById("meta").textContent = "Səhifə " + page.n + " · " + page.surah + " · " + page.range + " · " + FONTS.length + " nümunə";
-      pagesEl.querySelectorAll("button").forEach((b) => b.classList.toggle("on", Number(b.dataset.n) === cur));
-      grid.replaceChildren();
-      const peek = page.ayahs[0].t;
-      for (const [name, kind] of FONTS) {
-        const a = document.createElement("a");
-        a.className = "card";
-        const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-        a.href = "./v/s" + page.n + "-" + slug + ".html?v=5";
-        const b = document.createElement("b");
-        b.textContent = name;
-        const s = document.createElement("small");
-        s.textContent = kind;
-        const pk = document.createElement("div");
-        pk.className = "peek";
-        pk.style.fontFamily = '"' + name + '", serif';
-        pk.textContent = peek;
-        a.append(b, s, pk);
-        grid.append(a);
-      }
-    }
-    fetch("./data/pages.json").then((r) => r.json()).then((pages) => {
-      PAGES = pages;
-      if (cur < 1 || cur > pages.length) cur = 1;
-      pages.forEach((p) => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.dataset.n = p.n;
-        b.textContent = "Səhifə " + p.n;
-        b.onclick = () => { cur = p.n; history.replaceState(null, "", "./index.html?p=" + cur); paint(); };
-        pagesEl.append(b);
-      });
-      paint();
-    });
-  </script>
+<h1>Quran</h1>
+<p>Əsl məshəf düzümü. İlk 5 səhifə.</p>
+<div class="grid">
+  <a href="./q/1.html"><b>Səhifə 1</b><span>əl-Fatihə</span></a>
+  <a href="./q/2.html"><b>Səhifə 2</b><span>əl-Bəqərə</span></a>
+  <a href="./q/3.html"><b>Səhifə 3</b><span>əl-Bəqərə</span></a>
+  <a href="./q/4.html"><b>Səhifə 4</b><span>əl-Bəqərə</span></a>
+  <a href="./q/5.html"><b>Səhifə 5</b><span>əl-Bəqərə</span></a>
+</div>
 </body>
 </html>

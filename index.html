@@ -3,26 +3,75 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quran — ilk 5 səhifə</title>
+<title>Quran — səhifələr və 30 nümunə</title>
 <style>
   body { margin: 0; background: #fffaf0; color: #1a1612; font: 16px/1.4 "Segoe UI", sans-serif; }
-  h1 { text-align: center; font-size: 1.3rem; margin: 1.2rem 0 0.3rem; }
-  p { text-align: center; color: #6a5e4c; margin: 0 1rem 1rem; }
-  .grid { display: grid; gap: 0.7rem; padding: 0.4rem 1rem 2rem; max-width: 420px; margin: 0 auto; }
-  a { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e4d3ae; border-radius: 14px; padding: 0.9rem 1rem; }
-  a b { display: block; }
-  a span { color: #8a6a2e; font-size: 0.85rem; }
+  h1 { text-align: center; font-size: 1.3rem; margin: 1.1rem 0 0.2rem; }
+  h2 { text-align: center; font-size: 1rem; margin: 1.2rem 0 0.4rem; color: #1d3c34; }
+  p.note { text-align: center; color: #6a5e4c; margin: 0 1rem 0.6rem; font-size: 0.9rem; }
+  .real { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; padding: 0 0.8rem; max-width: 520px; margin: 0 auto; }
+  .real a { text-align: center; text-decoration: none; color: #1a1612; background: #fff; border: 1px solid #c4a56e; border-radius: 12px; padding: 0.7rem 0.2rem; font-weight: 700; }
+  .bar { display: flex; gap: 0.35rem; justify-content: center; flex-wrap: wrap; padding: 0.2rem 0.6rem 0; }
+  .bar button { border: 1px solid #c4a56e; background: #fff; border-radius: 999px; padding: 0.35rem 0.7rem; font: 650 0.85rem inherit; }
+  .bar button.on { background: #1d3c34; color: #e4c98a; border-color: #1d3c34; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.5rem; padding: 0.6rem 0.8rem 2rem; max-width: 720px; margin: 0 auto; }
+  .grid a { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e4d3ae; border-radius: 12px; padding: 0.65rem 0.7rem; }
+  .grid b { display: block; font-size: 0.92rem; }
+  .grid span { color: #8a6a2e; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em; }
 </style>
 </head>
 <body>
 <h1>Quran</h1>
-<p>Əsl məshəf düzümü. İlk 5 səhifə.</p>
-<div class="grid">
-  <a href="./q/1.html"><b>Səhifə 1</b><span>əl-Fatihə</span></a>
-  <a href="./q/2.html"><b>Səhifə 2</b><span>əl-Bəqərə</span></a>
-  <a href="./q/3.html"><b>Səhifə 3</b><span>əl-Bəqərə</span></a>
-  <a href="./q/4.html"><b>Səhifə 4</b><span>əl-Bəqərə</span></a>
-  <a href="./q/5.html"><b>Səhifə 5</b><span>əl-Bəqərə</span></a>
+<p class="note">Əsl məshəf, ilk 5 səhifə</p>
+<div class="real">
+  <a href="./q/1.html">1</a>
+  <a href="./q/2.html">2</a>
+  <a href="./q/3.html">3</a>
+  <a href="./q/4.html">4</a>
+  <a href="./q/5.html">5</a>
 </div>
+<h2>30 yazı nümunəsi</h2>
+<p class="note">Hər şrift ayrı səhifədə açılır</p>
+<div class="bar" id="pages"></div>
+<div class="grid" id="grid"></div>
+<script>
+const FONTS = [
+  ["Amiri Quran","Nəsx"],["Amiri","Nəsx"],["Scheherazade New","Nəsx"],["Noto Naskh Arabic","Nəsx"],
+  ["Lateef","Nəsx"],["Harmattan","Nəsx"],["Markazi Text","Nəsx"],["Readex Pro","Nəsx"],["El Messiri","Nəsx"],
+  ["IBM Plex Sans Arabic","Sans"],["Noto Sans Arabic","Sans"],["Cairo","Sans"],["Tajawal","Sans"],
+  ["Almarai","Sans"],["Mada","Sans"],["Zain","Sans"],["Fustat","Sans"],
+  ["Lemonada","Xətt"],["Playpen Sans Arabic","Xətt"],["Marhey","Xətt"],["Baloo Bhaijaan 2","Xətt"],["Katibeh","Xətt"],
+  ["Noto Nastaliq Urdu","Nəstəliq"],["Gulzar","Nəstəliq"],["Mirza","Nəstəliq"],
+  ["Aref Ruqaa","Ruqə"],["Aref Ruqaa Ink","Ruqə"],
+  ["Noto Kufi Arabic","Kufi"],["Reem Kufi","Kufi"],["Kufam","Kufi"]
+];
+let cur = 1;
+const bar = document.getElementById("pages");
+const grid = document.getElementById("grid");
+function paint() {
+  bar.querySelectorAll("button").forEach((b) => b.classList.toggle("on", Number(b.dataset.n) === cur));
+  grid.replaceChildren();
+  for (const [name, kind] of FONTS) {
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const a = document.createElement("a");
+    a.href = "./v/s" + cur + "-" + slug + ".html?v=5";
+    const b = document.createElement("b");
+    b.textContent = name;
+    const s = document.createElement("span");
+    s.textContent = kind;
+    a.append(b, s);
+    grid.append(a);
+  }
+}
+for (let n = 1; n <= 5; n++) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.dataset.n = n;
+  b.textContent = "Səhifə " + n;
+  b.onclick = () => { cur = n; paint(); };
+  bar.append(b);
+}
+paint();
+</script>
 </body>
 </html>

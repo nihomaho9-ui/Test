@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Cairo · səhifə 5</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #fffaf0; color: #142824; }
+    .hud { position: fixed; z-index: 2; top: 0; left: 0; right: 0; height: 40px; display: flex; align-items: center; background: #fffaf0; font: 650 13px "Segoe UI", sans-serif; color: #8a6a2e; }
+    .hud a { color: #12352c; text-decoration: none; padding: 8px; }
+    .hud a.nav { font-size: 22px; line-height: 1; }
+    .hud b { flex: 1; text-align: center; font-size: 13px; white-space: nowrap; overflow: hidden; }
+    #frame { position: fixed; top: 40px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+    #q { margin: 0 auto; padding: 4px 14px 10px; direction: rtl; text-align: center; font-family: "Cairo", "Noto Naskh Arabic", serif; line-height: 2.05; overflow-wrap: anywhere; }
+    #q .surah, #q .basmala { display: block; text-align: center; }
+    #q .mark { color: #8a6a2e; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="hud">
+    <a href="../index.html?p=5">Siyahı</a>
+    <a class="nav" href="./s5-noto-sans-arabic.html">‹</a>
+    <b>Cairo</b>
+    <a class="nav" href="./s5-tajawal.html">›</a>
+    <span style="padding-right:8px">5/5</span>
+  </nav>
+  <div id="frame"><div id="q"></div></div>
+  <script>
+    const PAGE = {"n": 5, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:25–29", "basmala": null, "showTitle": false, "ayahs": [{"s": 2, "a": 25, "t": "وَبَشِّرِ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ جَنَّٰتٍ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ كُلَّمَا رُزِقُوا۟ مِنْهَا مِن ثَمَرَةٍ رِّزْقًا قَالُوا۟ هَٰذَا ٱلَّذِى رُزِقْنَا مِن قَبْلُ وَأُتُوا۟ بِهِۦ مُتَشَٰبِهًا وَلَهُمْ فِيهَآ أَزْوَٰجٌ مُّطَهَّرَةٌ وَهُمْ فِيهَا خَٰلِدُونَ"}, {"s": 2, "a": 26, "t": "إِنَّ ٱللَّهَ لَا يَسْتَحْىِۦٓ أَن يَضْرِبَ مَثَلًا مَّا بَعُوضَةً فَمَا فَوْقَهَا فَأَمَّا ٱلَّذِينَ ءَامَنُوا۟ فَيَعْلَمُونَ أَنَّهُ ٱلْحَقُّ مِن رَّبِّهِمْ وَأَمَّا ٱلَّذِينَ كَفَرُوا۟ فَيَقُولُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَٰذَا مَثَلًا يُضِلُّ بِهِۦ كَثِيرًا وَيَهْدِى بِهِۦ كَثِيرًا وَمَا يُضِلُّ بِهِۦٓ إِلَّا ٱلْفَٰسِقِينَ"}, {"s": 2, "a": 27, "t": "ٱلَّذِينَ يَنقُضُونَ عَهْدَ ٱللَّهِ مِنۢ بَعْدِ مِيثَٰقِهِۦ وَيَقْطَعُونَ مَآ أَمَرَ ٱللَّهُ بِهِۦٓ أَن يُوصَلَ وَيُفْسِدُونَ فِى ٱلْأَرْضِ أُو۟لَٰٓئِكَ هُمُ ٱلْخَٰسِرُونَ"}, {"s": 2, "a": 28, "t": "كَيْفَ تَكْفُرُونَ بِٱللَّهِ وَكُنتُمْ أَمْوَٰتًا فَأَحْيَٰكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يُحْيِيكُمْ ثُمَّ إِلَيْهِ تُرْجَعُونَ"}, {"s": 2, "a": 29, "t": "هُوَ ٱلَّذِى خَلَقَ لَكُم مَّا فِى ٱلْأَرْضِ جَمِيعًا ثُمَّ ٱسْتَوَىٰٓ إِلَى ٱلسَّمَآءِ فَسَوَّىٰهُنَّ سَبْعَ سَمَٰوَٰتٍ وَهُوَ بِكُلِّ شَىْءٍ عَلِيمٌ"}]};
+    const FONT = "Cairo";
+    const LH = 2.05;
+    const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
+    const q = document.getElementById("q");
+    function build() {
+      q.replaceChildren();
+      q.style.fontFamily = '"' + FONT + '", "Noto Naskh Arabic", serif';
+      if (PAGE.showTitle) { const s = document.createElement("span"); s.className = "surah"; s.textContent = "سورة " + PAGE.ar; q.append(s); }
+      if (PAGE.basmala) { const b = document.createElement("span"); b.className = "basmala"; b.textContent = PAGE.basmala; q.append(b); }
+      PAGE.ayahs.forEach((ay, i) => {
+        q.append(document.createTextNode((i || PAGE.showTitle || PAGE.basmala ? " " : "") + ay.t + " "));
+        const m = document.createElement("span"); m.className = "mark"; m.textContent = "﴿" + ar(ay.a) + "﴾"; q.append(m);
+      });
+    }
+    function fit() {
+      const height = Math.max(200, window.innerHeight - 48);
+      const width = Math.max(200, window.innerWidth - 8);
+      const chars = Math.max(40, q.textContent.replace(/\s/g, "").length);
+      q.style.width = (width - 20) + "px";
+      q.style.transform = "none";
+      let font = Math.sqrt((height * (width - 28)) / (chars * 0.52 * LH));
+      font = Math.max(14, Math.min(font, (width - 28) / 12, 34));
+      q.style.fontSize = font + "px";
+      let guard = 0;
+      while ((q.scrollHeight > height - 6 || q.scrollWidth > width - 4) && font > 13 && guard < 24) {
+        font *= 0.92;
+        q.style.fontSize = font + "px";
+        guard++;
+      }
+    }
+    async function start() {
+      build();
+      try { await document.fonts.load('32px "' + FONT + '"'); } catch (e) {}
+      await document.fonts.ready;
+      fit();
+    }
+    start();
+    window.addEventListener("resize", fit);
+  </script>
+</body>
+</html>

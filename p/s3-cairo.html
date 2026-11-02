@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Cairo · səhifə 3</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #fffaf0; color: #142824; }
+    .hud {
+      position: fixed; z-index: 2; top: 0; left: 0; right: 0; height: 40px;
+      display: flex; align-items: center; background: #fffaf0;
+      font: 650 13px "Segoe UI", sans-serif; color: #8a6a2e;
+    }
+    .hud a { color: #12352c; text-decoration: none; padding: 8px; }
+    .hud a.nav { font-size: 22px; line-height: 1; }
+    .hud b { flex: 1; text-align: center; font-size: 13px; white-space: nowrap; overflow: hidden; }
+    #frame { position: fixed; top: 40px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+    #q {
+      margin: 0; padding: 6px 12px 8px; direction: rtl; text-align: center;
+      font-family: "Cairo", "Noto Naskh Arabic", serif;
+      line-height: 2; word-wrap: break-word; overflow-wrap: anywhere;
+    }
+    #q .surah, #q .basmala { display: block; text-align: center; }
+    #q .mark { color: #8a6a2e; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="hud">
+    <a href="../index.html?p=3">Siyahı</a>
+    <a class="nav" href="./s3-noto-sans-arabic.html">‹</a>
+    <b>Cairo</b>
+    <a class="nav" href="./s3-tajawal.html">›</a>
+    <span style="padding-right:8px">3/5</span>
+  </nav>
+  <div id="frame"><div id="q"></div></div>
+  <script>
+    const PAGE = {"n": 3, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:6–16", "basmala": null, "showTitle": false, "ayahs": [{"s": 2, "a": 6, "t": "إِنَّ ٱلَّذِينَ كَفَرُوا۟ سَوَآءٌ عَلَيْهِمْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ"}, {"s": 2, "a": 7, "t": "خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ وَعَلَىٰٓ أَبْصَٰرِهِمْ غِشَٰوَةٌ وَلَهُمْ عَذَابٌ عَظِيمٌ"}, {"s": 2, "a": 8, "t": "وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ وَبِٱلْيَوْمِ ٱلْـَٔاخِرِ وَمَا هُم بِمُؤْمِنِينَ"}, {"s": 2, "a": 9, "t": "يُخَٰدِعُونَ ٱللَّهَ وَٱلَّذِينَ ءَامَنُوا۟ وَمَا يَخْدَعُونَ إِلَّآ أَنفُسَهُمْ وَمَا يَشْعُرُونَ"}, {"s": 2, "a": 10, "t": "فِى قُلُوبِهِم مَّرَضٌ فَزَادَهُمُ ٱللَّهُ مَرَضًا وَلَهُمْ عَذَابٌ أَلِيمٌۢ بِمَا كَانُوا۟ يَكْذِبُونَ"}, {"s": 2, "a": 11, "t": "وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ قَالُوٓا۟ إِنَّمَا نَحْنُ مُصْلِحُونَ"}, {"s": 2, "a": 12, "t": "أَلَآ إِنَّهُمْ هُمُ ٱلْمُفْسِدُونَ وَلَٰكِن لَّا يَشْعُرُونَ"}, {"s": 2, "a": 13, "t": "وَإِذَا قِيلَ لَهُمْ ءَامِنُوا۟ كَمَآ ءَامَنَ ٱلنَّاسُ قَالُوٓا۟ أَنُؤْمِنُ كَمَآ ءَامَنَ ٱلسُّفَهَآءُ أَلَآ إِنَّهُمْ هُمُ ٱلسُّفَهَآءُ وَلَٰكِن لَّا يَعْلَمُونَ"}, {"s": 2, "a": 14, "t": "وَإِذَا لَقُوا۟ ٱلَّذِينَ ءَامَنُوا۟ قَالُوٓا۟ ءَامَنَّا وَإِذَا خَلَوْا۟ إِلَىٰ شَيَٰطِينِهِمْ قَالُوٓا۟ إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِءُونَ"}, {"s": 2, "a": 15, "t": "ٱللَّهُ يَسْتَهْزِئُ بِهِمْ وَيَمُدُّهُمْ فِى طُغْيَٰنِهِمْ يَعْمَهُونَ"}, {"s": 2, "a": 16, "t": "أُو۟لَٰٓئِكَ ٱلَّذِينَ ٱشْتَرَوُا۟ ٱلضَّلَٰلَةَ بِٱلْهُدَىٰ فَمَا رَبِحَت تِّجَٰرَتُهُمْ وَمَا كَانُوا۟ مُهْتَدِينَ"}]};
+    const FONT = "Cairo";
+    const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
+    const q = document.getElementById("q");
+    const frame = document.getElementById("frame");
+    function build() {
+      q.replaceChildren();
+      q.style.fontFamily = '"' + FONT + '", "Noto Naskh Arabic", serif';
+      if (PAGE.showTitle) {
+        const s = document.createElement("span");
+        s.className = "surah";
+        s.textContent = "سورة " + PAGE.ar;
+        q.append(s);
+      }
+      if (PAGE.basmala) {
+        const b = document.createElement("span");
+        b.className = "basmala";
+        b.textContent = PAGE.basmala;
+        q.append(b);
+      }
+      PAGE.ayahs.forEach((ay, i) => {
+        q.append(document.createTextNode((i || PAGE.showTitle || PAGE.basmala ? " " : "") + ay.t + " "));
+        const m = document.createElement("span");
+        m.className = "mark";
+        m.textContent = "﴿" + ar(ay.a) + "﴾";
+        q.append(m);
+      });
+    }
+    function fit() {
+      const availH = frame.clientHeight || (window.innerHeight - 40);
+      const availW = frame.clientWidth || window.innerWidth;
+      q.style.transform = "none";
+      q.style.width = availW + "px";
+      let lo = 12, hi = Math.max(28, Math.min(availW / 8, availH / 6)), best = 16;
+      for (let i = 0; i < 16; i++) {
+        const mid = (lo + hi) / 2;
+        q.style.fontSize = mid + "px";
+        if (q.scrollHeight <= availH - 4 && q.scrollWidth <= availW + 2) { best = mid; lo = mid; }
+        else hi = mid;
+      }
+      q.style.fontSize = best + "px";
+      const sx = availW / Math.max(q.scrollWidth, 1);
+      const sy = (availH - 4) / Math.max(q.scrollHeight, 1);
+      const s = Math.min(1, sx, sy);
+      if (s < 0.995) {
+        q.style.transformOrigin = "top center";
+        q.style.transform = "scale(" + s + ")";
+      }
+    }
+    async function start() {
+      build();
+      try { await document.fonts.load('32px "' + FONT + '"'); } catch (e) {}
+      await document.fonts.ready;
+      fit();
+    }
+    start();
+    window.addEventListener("resize", fit);
+  </script>
+</body>
+</html>

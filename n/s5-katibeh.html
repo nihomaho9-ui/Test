@@ -4,49 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Katibeh · səhifə 5</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Harmattan:wght@400;700&family=Markazi+Text:wght@400;700&family=Readex+Pro:wght@400;700&family=El+Messiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Almarai:wght@400;700&family=Mada:wght@400;700&family=Zain:wght@400;700&family=Fustat:wght@400;700&family=Lemonada:wght@400;700&family=Playpen+Sans+Arabic:wght@400;700&family=Marhey:wght@400;700&family=Baloo+Bhaijaan+2:wght@400;700&family=Katibeh&family=Noto+Nastaliq+Urdu:wght@400;700&family=Gulzar&family=Mirza:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&family=Reem+Kufi:wght@400;700&family=Kufam:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Harmattan:wght@400;700&family=Markazi+Text:wght@400;700&family=Readex+Pro:wght@400;700&family=El+Messiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Almarai:wght@400;700&family=Mada:wght@400;700&family=Zain:wght@400;700&family=Fustat:wght@400;700&family=Lemonada:wght@400;700&family=Playpen+Sans+Arabic:wght@400;700&family=Marhey:wght@400;700&family=Baloo+Bhaijaan+2:wght@400;700&family=Katibeh&family=Noto+Nastaliq+Urdu:wght@400;700&family=Gulzar&family=Mirza:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&family=Reem+Kufi:wght@400;700&family=Kufam:wght@400;700&display=swap" />
   <style>
     * { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; overflow: hidden; background: #fffaf0; color: #142824; }
+    html, body { margin: 0; height: 100svh; overflow: hidden; background: #fffaf0; color: #142824; }
     #sheet {
-      position: fixed; inset: 0;
-      padding: calc(2.3rem + env(safe-area-inset-top)) 0.7rem calc(0.4rem + env(safe-area-inset-bottom));
+      position: fixed; left: 0; right: 0; top: 0; height: 100svh; overflow: hidden;
+      padding: calc(2.15rem + env(safe-area-inset-top)) 0.55rem calc(0.35rem + env(safe-area-inset-bottom));
       display: flex; flex-direction: column; justify-content: space-evenly;
-      font-family: "Katibeh", serif;
+      font-family: "Katibeh", "Amiri Quran", serif;
     }
-    .line { flex: 1 1 0; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; direction: rtl; white-space: nowrap; overflow: hidden; }
+    .line {
+      flex: 1 1 auto; min-height: 0; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      direction: rtl; white-space: nowrap; line-height: 1;
+    }
     .line.full { justify-content: space-between; }
-    .line .mark { color: #8a6a2e; }
-    .hud { position: fixed; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 0.2rem; padding: calc(0.1rem + env(safe-area-inset-top)) 0.3rem 0.6rem; background: linear-gradient(#fffaf0 55%, rgba(255,250,240,0)); font: 650 0.78rem "Segoe UI", sans-serif; color: #8a6a2e; }
-    .hud a { color: #12352c; text-decoration: none; padding: 0.15rem 0.35rem; }
-    .hud a.nav { font-size: 1.25rem; line-height: 1; }
-    .hud b { flex: 1; text-align: center; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #probe { position: absolute; visibility: hidden; white-space: nowrap; pointer-events: none; font-family: "Katibeh", serif; }
+    .mark { color: #8a6a2e; }
+    .hud {
+      position: fixed; z-index: 2; top: 0; left: 0; right: 0; height: 2.05rem;
+      display: flex; align-items: center; gap: 0.15rem;
+      padding: env(safe-area-inset-top) 0.25rem 0;
+      background: #fffaf0; font: 650 0.78rem "Segoe UI", sans-serif; color: #8a6a2e;
+    }
+    .hud a { color: #12352c; text-decoration: none; padding: 0.1rem 0.35rem; }
+    .hud a.nav { font-size: 1.3rem; line-height: 1; }
+    .hud b { flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #probe { position: absolute; left: -9999px; top: 0; white-space: nowrap; visibility: hidden; font-family: "Katibeh", serif; }
   </style>
 </head>
 <body>
   <nav class="hud">
     <a href="../index.html?p=5">Siyahı</a>
-    <a class="nav" href="./s5-baloo-bhaijaan-2.html" aria-label="Əvvəlki">‹</a>
+    <a class="nav" href="./s5-baloo-bhaijaan-2.html">‹</a>
     <b>Katibeh</b>
-    <a class="nav" href="./s5-noto-nastaliq-urdu.html" aria-label="Növbəti">›</a>
-    <span>5 / 5</span>
+    <a class="nav" href="./s5-noto-nastaliq-urdu.html">›</a>
+    <span>5/5</span>
   </nav>
   <main id="sheet"></main>
   <span id="probe"></span>
   <script>
     const PAGE = {"n": 5, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:25–29", "basmala": null, "showTitle": false, "ayahs": [{"s": 2, "a": 25, "t": "وَبَشِّرِ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ جَنَّٰتٍ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ كُلَّمَا رُزِقُوا۟ مِنْهَا مِن ثَمَرَةٍ رِّزْقًا قَالُوا۟ هَٰذَا ٱلَّذِى رُزِقْنَا مِن قَبْلُ وَأُتُوا۟ بِهِۦ مُتَشَٰبِهًا وَلَهُمْ فِيهَآ أَزْوَٰجٌ مُّطَهَّرَةٌ وَهُمْ فِيهَا خَٰلِدُونَ"}, {"s": 2, "a": 26, "t": "إِنَّ ٱللَّهَ لَا يَسْتَحْىِۦٓ أَن يَضْرِبَ مَثَلًا مَّا بَعُوضَةً فَمَا فَوْقَهَا فَأَمَّا ٱلَّذِينَ ءَامَنُوا۟ فَيَعْلَمُونَ أَنَّهُ ٱلْحَقُّ مِن رَّبِّهِمْ وَأَمَّا ٱلَّذِينَ كَفَرُوا۟ فَيَقُولُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَٰذَا مَثَلًا يُضِلُّ بِهِۦ كَثِيرًا وَيَهْدِى بِهِۦ كَثِيرًا وَمَا يُضِلُّ بِهِۦٓ إِلَّا ٱلْفَٰسِقِينَ"}, {"s": 2, "a": 27, "t": "ٱلَّذِينَ يَنقُضُونَ عَهْدَ ٱللَّهِ مِنۢ بَعْدِ مِيثَٰقِهِۦ وَيَقْطَعُونَ مَآ أَمَرَ ٱللَّهُ بِهِۦٓ أَن يُوصَلَ وَيُفْسِدُونَ فِى ٱلْأَرْضِ أُو۟لَٰٓئِكَ هُمُ ٱلْخَٰسِرُونَ"}, {"s": 2, "a": 28, "t": "كَيْفَ تَكْفُرُونَ بِٱللَّهِ وَكُنتُمْ أَمْوَٰتًا فَأَحْيَٰكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يُحْيِيكُمْ ثُمَّ إِلَيْهِ تُرْجَعُونَ"}, {"s": 2, "a": 29, "t": "هُوَ ٱلَّذِى خَلَقَ لَكُم مَّا فِى ٱلْأَرْضِ جَمِيعًا ثُمَّ ٱسْتَوَىٰٓ إِلَى ٱلسَّمَآءِ فَسَوَّىٰهُنَّ سَبْعَ سَمَٰوَٰتٍ وَهُوَ بِكُلِّ شَىْءٍ عَلِيمٌ"}]};
-    const FONT = "Katibeh";
     const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
     const sheet = document.getElementById("sheet");
     const probe = document.getElementById("probe");
-    function measure(text, px) {
-      probe.style.font = px + "px " + probe.style.fontFamily;
-      probe.textContent = text;
-      return probe.offsetWidth;
-    }
+    const measure = (text, px) => { probe.style.fontSize = px + "px"; probe.textContent = text; return probe.offsetWidth; };
     function tokensOf(page) {
       const out = [];
       if (page.showTitle) out.push({ text: "سورة " + page.ar, center: true });
@@ -58,53 +60,56 @@
       return out;
     }
     function wrap(tokens, px, width) {
-      const lines = [];
-      let cur = [], used = 0;
-      const gap = px * 0.35;
+      const lines = []; let cur = [], used = 0; const gap = px * 0.32;
       for (const tok of tokens) {
         if (tok.center) {
-          if (cur.length) { lines.push({ words: cur, center: false }); cur = []; used = 0; }
-          lines.push({ words: [tok.text], center: true });
-          continue;
+          if (cur.length) lines.push(cur);
+          lines.push([tok.text]); cur = []; used = 0; continue;
         }
         const w = measure(tok.text, px);
         if (w > width) return null;
         const next = used + (cur.length ? gap : 0) + w;
-        if (cur.length && next > width) { lines.push({ words: cur, center: false }); cur = [tok.text]; used = w; }
+        if (cur.length && next > width) { lines.push(cur); cur = [tok.text]; used = w; }
         else { cur.push(tok.text); used = next; }
       }
-      if (cur.length) lines.push({ words: cur, center: false });
+      if (cur.length) lines.push(cur);
       return lines;
     }
     function show() {
       const tokens = tokensOf(PAGE);
-      const width = sheet.clientWidth - 4;
-      const height = sheet.clientHeight;
-      let lo = 8, hi = Math.min(width / 4, height / 4), best = null;
-      for (let i = 0; i < 16; i++) {
+      const width = Math.max(40, sheet.clientWidth - 2);
+      const height = Math.max(40, sheet.clientHeight);
+      let lo = 8, hi = Math.min(width / 6, height / 5), best = null;
+      for (let i = 0; i < 18; i++) {
         const mid = (lo + hi) / 2;
         const lines = wrap(tokens, mid, width);
-        if (lines && lines.length * mid * 1.15 <= height) { best = { px: mid, lines }; lo = mid; }
+        if (lines && lines.length * mid * 1.85 <= height) { best = { px: mid, lines }; lo = mid; }
         else hi = mid;
       }
-      if (!best) best = { px: 12, lines: wrap(tokens, 12, width) || [{ words: ["…"], center: true }] };
+      if (!best) {
+        const lines = wrap(tokens, lo, width) || [tokens.map((t) => t.text)];
+        best = { px: lo, lines };
+      }
       sheet.replaceChildren();
-      for (const line of best.lines) {
+      for (const words of best.lines) {
         const el = document.createElement("div");
-        el.className = "line" + (!line.center && line.words.length > 1 ? " full" : "");
+        el.className = "line" + (words.length > 1 ? " full" : "");
         el.style.fontSize = best.px + "px";
-        line.words.forEach((w) => {
+        for (const w of words) {
           const s = document.createElement("span");
           const m = w.match(/^(.*?)( ﴿.+﴾)$/);
-          if (m) { s.append(m[1]); const k = document.createElement("span"); k.className = "mark"; k.textContent = m[2]; s.append(k); }
+          if (m) { s.append(document.createTextNode(m[1])); const k = document.createElement("span"); k.className = "mark"; k.textContent = m[2]; s.append(k); }
           else s.textContent = w;
           el.append(s);
-        });
+        }
         sheet.append(el);
       }
     }
-    document.fonts.ready.then(() => { show(); setTimeout(show, 300); });
-    window.addEventListener("resize", show);
+    const go = () => requestAnimationFrame(show);
+    document.fonts.ready.then(go);
+    document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", go);
+    window.addEventListener("resize", go);
+    setTimeout(go, 250);
   </script>
 </body>
 </html>

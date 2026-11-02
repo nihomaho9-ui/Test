@@ -7,211 +7,74 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap"/>
 <style>
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; background: #fffaf0; color: #1a1612; font-family: "Segoe UI", sans-serif; }
-  body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
-  header { display: flex; align-items: center; gap: 8px; padding: 6px 10px 0; color: #6a5e4c; font-size: 13px; }
-  header a { color: #8a7d68; text-decoration: none; font-size: 20px; padding: 4px; }
-  header b { flex: 1; text-align: center; font-weight: 500; font-size: 13px; white-space: nowrap; overflow: hidden; }
-  #page { --rows: 15; flex: 1; min-height: 0; background: #fffaf0; display: flex; flex-direction: column; overflow: hidden; color: #1a1612; }
-  #page.mid { justify-content: center; position: relative; }
-  #page.mid .line { flex: 0 0 calc(100% / var(--rows)); }
-  #page.mid .line.surah { position: absolute; left: 0; right: 0; height: calc(100% / var(--rows)); flex: none; top: calc(50% - var(--half, 3.5) * 100% / var(--rows) - 100% / var(--rows)); }
-  .line { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; line-height: 1.15; white-space: nowrap; direction: rtl; font-family: "Reem Kufi", "Noto Naskh Arabic", serif; }
-  #page:not(.mid) { justify-content: center; }
-  #page:not(.mid) .line { flex: 0 1 calc(100% / 16.2); }
-  .shead { position: relative; width: 92%; height: 86%; display: flex; align-items: center; justify-content: center; }
-  .shead img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
-  .snames { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 0.28em; direction: rtl; }
-  .sname { font-family: surahnames, serif; line-height: 1; color: #1a1612; }
-  .ayah { display: inline-block; min-width: 1.15em; height: 1.15em; line-height: 1.05em; margin: 0 0.12em; border: 1px solid #8a6a2e; border-radius: 50%; color: #8a6a2e; font-size: 0.46em; text-align: center; vertical-align: middle; }
-  .num { text-align: center; color: #8a7d68; font-size: 12px; padding: 2px 0 8px; }
-  #probe { position: absolute; left: -9999px; top: 0; white-space: nowrap; visibility: hidden; font-family: "Reem Kufi", "Noto Naskh Arabic", serif; }
+  html, body { margin: 0; height: 100%; background: #fbf7ee; color: #1a1612; }
+  body { height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; font-family: "Segoe UI", sans-serif; }
+  header { display: flex; align-items: center; height: 36px; padding: 0 6px; color: #6a5e4c; font-size: 13px; }
+  header a { color: #8a7d68; text-decoration: none; font-size: 22px; padding: 0 8px; }
+  header b { flex: 1; text-align: center; font-weight: 550; font-size: 13px; white-space: nowrap; overflow: hidden; }
+  #page {
+    flex: 1; min-height: 0; margin: 0 10px 8px;
+    display: flex; flex-direction: column; justify-content: space-evenly;
+    overflow: hidden; direction: rtl;
+    font-family: "Reem Kufi", "Noto Naskh Arabic", serif;
+  }
+  .line { display: flex; align-items: center; justify-content: space-between; width: 100%; white-space: nowrap; line-height: 1; }
+  .line.head, .line.basmala, .line.short { justify-content: center; }
+  .line.head { color: #1d3c34; }
+  .num { color: #8a6a2e; font-size: 0.72em; margin-inline-start: 0.2em; }
 </style>
 </head>
 <body>
 <header>
   <a href="../index.html">‹</a>
-  <a href="./s3-noto-kufi-arabic.html?v=6">‹</a>
+  <a href="./s3-noto-kufi-arabic.html?v=7">‹</a>
   <b>Reem Kufi</b>
-  <a href="./s3-kufam.html?v=6">›</a>
+  <a href="./s3-kufam.html?v=7">›</a>
 </header>
 <div id="page"></div>
-<div class="num">3 / 5</div>
-<span id="probe"></span>
 <script>
-const PAGE = {"n": 3, "surah": "əl-Bəqərə", "ar": "البقرة", "place": "Mədinə", "range": "2:6–16", "basmala": null, "showTitle": false, "ayahs": [{"s": 2, "a": 6, "t": "إِنَّ ٱلَّذِينَ كَفَرُوا۟ سَوَآءٌ عَلَيْهِمْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ"}, {"s": 2, "a": 7, "t": "خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ وَعَلَىٰٓ أَبْصَٰرِهِمْ غِشَٰوَةٌ وَلَهُمْ عَذَابٌ عَظِيمٌ"}, {"s": 2, "a": 8, "t": "وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ وَبِٱلْيَوْمِ ٱلْـَٔاخِرِ وَمَا هُم بِمُؤْمِنِينَ"}, {"s": 2, "a": 9, "t": "يُخَٰدِعُونَ ٱللَّهَ وَٱلَّذِينَ ءَامَنُوا۟ وَمَا يَخْدَعُونَ إِلَّآ أَنفُسَهُمْ وَمَا يَشْعُرُونَ"}, {"s": 2, "a": 10, "t": "فِى قُلُوبِهِم مَّرَضٌ فَزَادَهُمُ ٱللَّهُ مَرَضًا وَلَهُمْ عَذَابٌ أَلِيمٌۢ بِمَا كَانُوا۟ يَكْذِبُونَ"}, {"s": 2, "a": 11, "t": "وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ قَالُوٓا۟ إِنَّمَا نَحْنُ مُصْلِحُونَ"}, {"s": 2, "a": 12, "t": "أَلَآ إِنَّهُمْ هُمُ ٱلْمُفْسِدُونَ وَلَٰكِن لَّا يَشْعُرُونَ"}, {"s": 2, "a": 13, "t": "وَإِذَا قِيلَ لَهُمْ ءَامِنُوا۟ كَمَآ ءَامَنَ ٱلنَّاسُ قَالُوٓا۟ أَنُؤْمِنُ كَمَآ ءَامَنَ ٱلسُّفَهَآءُ أَلَآ إِنَّهُمْ هُمُ ٱلسُّفَهَآءُ وَلَٰكِن لَّا يَعْلَمُونَ"}, {"s": 2, "a": 14, "t": "وَإِذَا لَقُوا۟ ٱلَّذِينَ ءَامَنُوا۟ قَالُوٓا۟ ءَامَنَّا وَإِذَا خَلَوْا۟ إِلَىٰ شَيَٰطِينِهِمْ قَالُوٓا۟ إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِءُونَ"}, {"s": 2, "a": 15, "t": "ٱللَّهُ يَسْتَهْزِئُ بِهِمْ وَيَمُدُّهُمْ فِى طُغْيَٰنِهِمْ يَعْمَهُونَ"}, {"s": 2, "a": 16, "t": "أُو۟لَٰٓئِكَ ٱلَّذِينَ ٱشْتَرَوُا۟ ٱلضَّلَٰلَةَ بِٱلْهُدَىٰ فَمَا رَبِحَت تِّجَٰرَتُهُمْ وَمَا كَانُوا۟ مُهْتَدِينَ"}]};
+const LINES = [{"t": "l", "w": [{"w": "إِنَّ", "n": ""}, {"w": "ٱلَّذِينَ", "n": ""}, {"w": "كَفَرُوا۟", "n": ""}, {"w": "سَوَآءٌ", "n": ""}, {"w": "عَلَيْهِمْ", "n": ""}, {"w": "ءَأَنذَرْتَهُمْ", "n": ""}, {"w": "أَمْ", "n": ""}, {"w": "لَمْ", "n": ""}, {"w": "تُنذِرْهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "لَا", "n": ""}, {"w": "يُؤْمِنُونَ", "n": "٦"}, {"w": "خَتَمَ", "n": ""}, {"w": "ٱللَّهُ", "n": ""}, {"w": "عَلَىٰ", "n": ""}, {"w": "قُلُوبِهِمْ", "n": ""}, {"w": "وَعَلَىٰ", "n": ""}, {"w": "سَمْعِهِمْ ۖ", "n": ""}, {"w": "وَعَلَىٰٓ", "n": ""}]}, {"t": "l", "w": [{"w": "أَبْصَـٰرِهِمْ", "n": ""}, {"w": "غِشَـٰوَةٌۭ ۖ", "n": ""}, {"w": "وَلَهُمْ", "n": ""}, {"w": "عَذَابٌ", "n": ""}, {"w": "عَظِيمٌۭ", "n": "٧"}, {"w": "وَمِنَ", "n": ""}, {"w": "ٱلنَّاسِ", "n": ""}]}, {"t": "l", "w": [{"w": "مَن", "n": ""}, {"w": "يَقُولُ", "n": ""}, {"w": "ءَامَنَّا", "n": ""}, {"w": "بِٱللَّهِ", "n": ""}, {"w": "وَبِٱلْيَوْمِ", "n": ""}, {"w": "ٱلْـَٔاخِرِ", "n": ""}, {"w": "وَمَا", "n": ""}, {"w": "هُم", "n": ""}, {"w": "بِمُؤْمِنِينَ", "n": "٨"}]}, {"t": "l", "w": [{"w": "يُخَـٰدِعُونَ", "n": ""}, {"w": "ٱللَّهَ", "n": ""}, {"w": "وَٱلَّذِينَ", "n": ""}, {"w": "ءَامَنُوا۟", "n": ""}, {"w": "وَمَا", "n": ""}, {"w": "يَخْدَعُونَ", "n": ""}, {"w": "إِلَّآ", "n": ""}, {"w": "أَنفُسَهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "وَمَا", "n": ""}, {"w": "يَشْعُرُونَ", "n": "٩"}, {"w": "فِى", "n": ""}, {"w": "قُلُوبِهِم", "n": ""}, {"w": "مَّرَضٌۭ", "n": ""}, {"w": "فَزَادَهُمُ", "n": ""}, {"w": "ٱللَّهُ", "n": ""}, {"w": "مَرَضًۭا ۖ", "n": ""}]}, {"t": "l", "w": [{"w": "وَلَهُمْ", "n": ""}, {"w": "عَذَابٌ", "n": ""}, {"w": "أَلِيمٌۢ", "n": ""}, {"w": "بِمَا", "n": ""}, {"w": "كَانُوا۟", "n": ""}, {"w": "يَكْذِبُونَ", "n": "١٠"}, {"w": "وَإِذَا", "n": ""}, {"w": "قِيلَ", "n": ""}, {"w": "لَهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "لَا", "n": ""}, {"w": "تُفْسِدُوا۟", "n": ""}, {"w": "فِى", "n": ""}, {"w": "ٱلْأَرْضِ", "n": ""}, {"w": "قَالُوٓا۟", "n": ""}, {"w": "إِنَّمَا", "n": ""}, {"w": "نَحْنُ", "n": ""}, {"w": "مُصْلِحُونَ", "n": "١١"}, {"w": "أَلَآ", "n": ""}, {"w": "إِنَّهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "هُمُ", "n": ""}, {"w": "ٱلْمُفْسِدُونَ", "n": ""}, {"w": "وَلَـٰكِن", "n": ""}, {"w": "لَّا", "n": ""}, {"w": "يَشْعُرُونَ", "n": "١٢"}, {"w": "وَإِذَا", "n": ""}, {"w": "قِيلَ", "n": ""}, {"w": "لَهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "ءَامِنُوا۟", "n": ""}, {"w": "كَمَآ", "n": ""}, {"w": "ءَامَنَ", "n": ""}, {"w": "ٱلنَّاسُ", "n": ""}, {"w": "قَالُوٓا۟", "n": ""}, {"w": "أَنُؤْمِنُ", "n": ""}, {"w": "كَمَآ", "n": ""}, {"w": "ءَامَنَ", "n": ""}, {"w": "ٱلسُّفَهَآءُ ۗ", "n": ""}]}, {"t": "l", "w": [{"w": "أَلَآ", "n": ""}, {"w": "إِنَّهُمْ", "n": ""}, {"w": "هُمُ", "n": ""}, {"w": "ٱلسُّفَهَآءُ", "n": ""}, {"w": "وَلَـٰكِن", "n": ""}, {"w": "لَّا", "n": ""}, {"w": "يَعْلَمُونَ", "n": "١٣"}, {"w": "وَإِذَا", "n": ""}, {"w": "لَقُوا۟", "n": ""}]}, {"t": "l", "w": [{"w": "ٱلَّذِينَ", "n": ""}, {"w": "ءَامَنُوا۟", "n": ""}, {"w": "قَالُوٓا۟", "n": ""}, {"w": "ءَامَنَّا", "n": ""}, {"w": "وَإِذَا", "n": ""}, {"w": "خَلَوْا۟", "n": ""}, {"w": "إِلَىٰ", "n": ""}, {"w": "شَيَـٰطِينِهِمْ", "n": ""}, {"w": "قَالُوٓا۟", "n": ""}, {"w": "إِنَّا", "n": ""}]}, {"t": "l", "w": [{"w": "مَعَكُمْ", "n": ""}, {"w": "إِنَّمَا", "n": ""}, {"w": "نَحْنُ", "n": ""}, {"w": "مُسْتَهْزِءُونَ", "n": "١٤"}, {"w": "ٱللَّهُ", "n": ""}, {"w": "يَسْتَهْزِئُ", "n": ""}, {"w": "بِهِمْ", "n": ""}, {"w": "وَيَمُدُّهُمْ", "n": ""}]}, {"t": "l", "w": [{"w": "فِى", "n": ""}, {"w": "طُغْيَـٰنِهِمْ", "n": ""}, {"w": "يَعْمَهُونَ", "n": "١٥"}, {"w": "أُو۟لَـٰٓئِكَ", "n": ""}, {"w": "ٱلَّذِينَ", "n": ""}, {"w": "ٱشْتَرَوُا۟", "n": ""}, {"w": "ٱلضَّلَـٰلَةَ", "n": ""}]}, {"t": "l", "w": [{"w": "بِٱلْهُدَىٰ", "n": ""}, {"w": "فَمَا", "n": ""}, {"w": "رَبِحَت", "n": ""}, {"w": "تِّجَـٰرَتُهُمْ", "n": ""}, {"w": "وَمَا", "n": ""}, {"w": "كَانُوا۟", "n": ""}, {"w": "مُهْتَدِينَ", "n": "١٦"}]}];
 const FONT = "Reem Kufi";
-const ar = (n) => String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d]);
-const board = document.getElementById("page");
-const probe = document.getElementById("probe");
-const CAN = new Set("بتثجحخسشصضطظعغفقكلمنهيئىة".split(""));
-const measure = (text, px) => { probe.style.fontSize = px + "px"; probe.textContent = text; return probe.getBoundingClientRect().width; };
-function clusters(word) {
-  const out = [];
-  for (const ch of word) { if (/\p{M}/u.test(ch) && out.length) out[out.length - 1] += ch; else out.push(ch); }
-  return out;
-}
-function base(c) { return c.normalize("NFD").replace(/\p{M}/gu, ""); }
-function spots(word) {
-  const c = clusters(word); const idx = [];
-  for (let i = 0; i < c.length - 1; i++) if (CAN.has(base(c[i]))) idx.push(i);
-  return { c, idx };
-}
-function stretch(word, n) {
-  const { c, idx } = spots(word);
-  if (!idx.length || n <= 0) return word;
-  const extra = idx.map(() => 0);
-  for (let k = 0; k < n; k++) extra[k % idx.length]++;
-  const parts = c.slice();
-  for (let i = idx.length - 1; i >= 0; i--) if (extra[i]) parts[idx[i]] += "ـ".repeat(extra[i]);
-  return parts.join("");
-}
-function wordsOf() {
-  const words = [];
-  for (const ay of PAGE.ayahs) {
-    if (PAGE.n === 1 && ay.a === 1) continue;
-    const ws = ay.t.split(/\s+/).filter(Boolean);
-    ws.forEach((w, i) => words.push({ w, a: i === ws.length - 1 ? ay.a : 0, k: 0 }));
-  }
-  return words;
-}
-function widthOf(line, px) {
-  const gap = px * 0.22;
-  let w = 0;
-  line.forEach((t, i) => { w += measure(stretch(t.w, t.k || 0), px) + (t.a ? px * 0.85 : 0) + (i ? gap : 0); });
-  return w;
-}
-function wrap(words, px, width) {
-  if (PAGE.n === 1) {
-    const lines = [];
-    for (const ay of PAGE.ayahs) {
-      if (ay.a === 1) continue;
-      const ws = ay.t.split(/\s+/).filter(Boolean).map((w, i, arr) => ({ w, a: i === arr.length - 1 ? ay.a : 0, k: 0 }));
-      let cur = [], used = 0;
-      for (const tok of ws) {
-        const ww = measure(tok.w, px) + (tok.a ? px * 0.85 : 0);
-        if (ww > width) return null;
-        if (cur.length && used + px * 0.22 + ww > width) { lines.push(cur); cur = [tok]; used = ww; }
-        else { used += (cur.length ? px * 0.22 : 0) + ww; cur.push(tok); }
-      }
-      if (cur.length) lines.push(cur);
-    }
-    return lines;
-  }
-  const lines = []; let cur = [], used = 0;
-  for (const src of words) {
-    const tok = { w: src.w, a: src.a, k: 0 };
-    const ww = measure(tok.w, px) + (tok.a ? px * 0.85 : 0);
-    if (ww > width) return null;
-    if (cur.length && used + px * 0.22 + ww > width) { lines.push(cur); cur = [tok]; used = ww; }
-    else { used += (cur.length ? px * 0.22 : 0) + ww; cur.push(tok); }
-  }
-  if (cur.length) lines.push(cur);
-  return lines;
-}
-function fill(lines, px, width) {
-  if (PAGE.n === 1) return lines;
-  for (const line of lines) {
-    if (line.length < 2) continue;
-    let guard = 0;
-    while (widthOf(line, px) < width * 0.96 && guard < 40) {
-      const order = line.map((t, i) => ({ i, s: spots(t.w).idx.length })).filter((x) => x.s);
-      if (!order.length) break;
-      const pick = order[guard % order.length].i;
-      line[pick].k++;
-      if (widthOf(line, px) > width * 0.99) { line[pick].k--; break; }
-      guard++;
-    }
-  }
-  return lines;
-}
-function paint(px, lines) {
-  board.replaceChildren();
-  board.style.fontSize = px + "px";
-  const rows = [];
-  if (PAGE.showTitle && (PAGE.n === 1 || PAGE.n === 2)) {
+const page = document.getElementById("page");
+function build() {
+  page.replaceChildren();
+  page.style.fontFamily = '"' + FONT + '", "Noto Naskh Arabic", serif';
+  for (const ln of LINES) {
     const row = document.createElement("div");
-    row.className = "line surah";
-    const head = document.createElement("div");
-    head.className = "shead";
-    const img = document.createElement("img");
-    img.src = "../fonts/surah-banner.png"; img.alt = "";
-    const names = document.createElement("span");
-    names.className = "snames";
-    const word = document.createElement("span");
-    word.className = "sname"; word.textContent = "\uE000";
-    const name = document.createElement("span");
-    name.className = "sname"; name.textContent = String.fromCharCode(0xE000 + (PAGE.n === 1 ? 1 : 2));
-    names.append(word, name); head.append(img, names); row.append(head);
-    rows.push(row);
-  }
-  const bText = PAGE.n === 1 ? PAGE.ayahs[0].t : PAGE.basmala;
-  if (bText) {
-    const row = document.createElement("div");
-    row.className = "line";
-    row.style.fontSize = px + "px";
-    row.textContent = bText;
-    rows.push(row);
-  }
-  for (const line of lines) {
-    const row = document.createElement("div");
-    row.className = "line" + (line.length < 2 ? " mid" : "");
-    row.style.fontSize = px + "px";
-    if (line.length < 2) row.style.justifyContent = "center";
-    line.forEach((tok, i) => {
-      if (i) row.append(document.createTextNode(" "));
-      row.append(document.createTextNode(stretch(tok.w, tok.k || 0)));
-      if (tok.a) { const m = document.createElement("span"); m.className = "ayah"; m.textContent = ar(tok.a); row.append(m); }
-    });
-    rows.push(row);
-  }
-  const mid = PAGE.n <= 2;
-  board.classList.toggle("mid", mid);
-  if (mid) board.style.setProperty("--half", String(Math.max(1, (rows.length - 1) / 2)));
-  rows.forEach((r) => board.append(r));
-  const head = board.querySelector(".shead");
-  if (head) {
-    let ink = 0;
-    for (const line of board.querySelectorAll(".line:not(.surah)")) ink = Math.max(ink, line.scrollWidth);
-    if (ink > 0) head.style.width = Math.min(ink, board.clientWidth * 0.94) + "px";
-    const names = board.querySelector(".snames");
-    if (names) {
-      let s = head.clientHeight * 0.42;
-      names.style.fontSize = s + "px";
-      if (names.scrollWidth > head.clientWidth * 0.62) names.style.fontSize = s * (head.clientWidth * 0.62 / names.scrollWidth) + "px";
+    if (ln.t === "h") { row.className = "line head"; row.textContent = ln.s; }
+    else if (ln.t === "b") { row.className = "line basmala"; row.textContent = ln.s; }
+    else {
+      row.className = "line" + (ln.w.length < 4 ? " short" : "");
+      ln.w.forEach((word) => {
+        const s = document.createElement("span");
+        s.textContent = word.w;
+        if (word.n) {
+          const n = document.createElement("span");
+          n.className = "num";
+          n.textContent = word.n;
+          s.append(n);
+        }
+        row.append(s);
+      });
     }
+    page.append(row);
   }
 }
 function fit() {
-  const words = wordsOf();
-  const width = Math.max(140, board.clientWidth - 18);
-  const height = Math.max(160, board.clientHeight);
-  let px = PAGE.n <= 2 ? height / 12 : height / 17.5;
-  let lines = null;
-  for (let i = 0; i < 18; i++) {
-    lines = wrap(words, px, width);
-    const count = (lines ? lines.length : 40) + (PAGE.n <= 2 ? 2 : 0);
-    const tooHigh = !lines || count * px * 1.35 > height;
-    const tooWide = !lines;
-    if (tooHigh || tooWide) px *= 0.9;
-    else break;
-  }
-  if (!lines) lines = wrap(words, 12, width) || [words];
-  paint(Math.max(12, px), fill(lines, px, width));
-  let guard = 0;
-  while (guard < 8 && [...board.querySelectorAll(".line")].some((l) => l.scrollWidth > l.clientWidth + 2)) {
+  const height = page.clientHeight;
+  const width = page.clientWidth;
+  let px = Math.max(14, height / (LINES.length * 2.05));
+  page.style.fontSize = px + "px";
+  for (let i = 0; i < 16; i++) {
+    const over = [...page.children].some((el) => el.scrollWidth > width + 1) || page.scrollHeight > height + 1;
+    if (!over) break;
     px *= 0.92;
-    const again = wrap(words, px, width);
-    if (!again) break;
-    paint(px, fill(again, px, width));
-    guard++;
+    page.style.fontSize = px + "px";
   }
 }
 async function start() {
-  try {
-    await document.fonts.load('32px "' + FONT + '"');
-    await new FontFace("surahnames", "url(../fonts/sura_names.woff2)").load().then((f) => document.fonts.add(f));
-  } catch (e) {}
+  build();
+  try { await document.fonts.load('32px "' + FONT + '"'); } catch (e) {}
   await document.fonts.ready;
   fit();
 }
